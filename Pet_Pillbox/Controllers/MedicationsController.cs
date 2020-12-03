@@ -14,9 +14,9 @@ namespace Pet_Pillbox.Controllers
     {
         MedicationsRepository _repo;
 
-        public MedicationsController()
+        public MedicationsController(MedicationsRepository repo)
         {
-            _repo = new MedicationsRepository();
+            _repo = repo;
         }
 
         [HttpGet]

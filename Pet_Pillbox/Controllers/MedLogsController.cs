@@ -14,9 +14,9 @@ namespace Pet_Pillbox.Controllers
     {
         MedLogsRepository _repo;
 
-        public MedLogsController()
+        public MedLogsController(MedLogsRepository repo)
         {
-            _repo = new MedLogsRepository();
+            _repo = repo;
         }
 
         [HttpGet]

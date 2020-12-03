@@ -10,21 +10,21 @@ namespace Pet_Pillbox.Controllers
 {
     [Route("api/dosetypes")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class DoseTypesController : ControllerBase
     {
-        UsersRepository _repo;
+        DoseTypesRepository _repo;
 
-        public UsersController()
+        public DoseTypesController(DoseTypesRepository repo)
         {
-            _repo = new UsersRepository();
+            _repo = repo;
         }
 
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllDoseTypes()
         {
-            var allUsers = _repo.GetAllUsers();
+            var allDoseTypes = _repo.GetAllDoseTypes();
 
-            return Ok(allUsers);
+            return Ok(allDoseTypes);
         }
     }
 }

@@ -5,14 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace Pet_Pillbox.Data
 {
     public class MedicationsRepository
     {
-        static List<Medication> _medications = new List<Medication>();
+        readonly string _connectionString;
 
-        const string _connectionString = "Server=localhost;Database=Pet_Pillbox;Trusted_Connection=True;";
+        public MedicationsRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("Pet_Pillbox");
+        }
 
         public List<Medication> GetAllMedications()
         {

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Pet_Pillbox.Data;
 
 namespace Pet_Pillbox
 {
@@ -26,6 +27,13 @@ namespace Pet_Pillbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<DoseTypesRepository>();
+            services.AddTransient<MedicationsRepository>();
+            services.AddTransient<MedLogsRepository>();
+            services.AddTransient<PetsRepository>();
+            services.AddTransient<UsersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

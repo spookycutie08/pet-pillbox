@@ -5,22 +5,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace Pet_Pillbox.Data
 {
-    public class DoseTypesRepository
+    public class MedLogsRepository
     {
-        static List<DoseType> _doseTypes = new List<DoseType>();
+        readonly string _connectionString;
 
-        const string _connectionString = "Server=localhost;Database=Pet_Pillbox;Trusted_Connection=True;";
+        public MedLogsRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("Pet_Pillbox");
+        }
 
-        public List<DoseType> GetAllDoseTypes()
+        public List<MedLog> GetAllMedLogs()
         {
             using var db = new SqlConnection(_connectionString);
 
-            var doseTypes = db.Query<DoseType>("select * from DoseTypes");
+            var medLogs = db.Query<MedLog>("select * from MedLogs");
 
-            return doseTypes.ToList();
+            return medLogs.ToList();
         }
     }
 }

@@ -8,23 +8,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Pet_Pillbox.Controllers
 {
-    [Route("api/dosetypes")]
+    [Route("api/users")]
     [ApiController]
-    public class DoseTypesController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        DoseTypesRepository _repo;
+        UsersRepository _repo;
 
-        public DoseTypesController()
+        public UsersController(UsersRepository repo)
         {
-            _repo = new DoseTypesRepository();
+            _repo = repo;
         }
 
         [HttpGet]
-        public IActionResult GetAllDoseTypes()
+        public IActionResult GetAllUsers()
         {
-            var allDoseTypes = _repo.GetAllDoseTypes();
+            var allUsers = _repo.GetAllUsers();
 
-            return Ok(allDoseTypes);
+            return Ok(allUsers);
         }
     }
 }
