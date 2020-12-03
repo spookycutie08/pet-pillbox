@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pet_Pillbox.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +28,13 @@ namespace Pet_Pillbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<DoseTypesRepository>();
+            services.AddTransient<MedicationsRepository>();
+            services.AddTransient<MedLogsRepository>();
+            services.AddTransient<PetsRepository>();
+            services.AddTransient<UsersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +50,8 @@ namespace Pet_Pillbox
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {
