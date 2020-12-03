@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Pet_Pillbox.Controllers
 {
-    [Route("api/dosetypes")]
+    [Route("api/medications")]
     [ApiController]
     public class MedicationsController : ControllerBase
     {
