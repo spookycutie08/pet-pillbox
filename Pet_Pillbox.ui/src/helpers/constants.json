@@ -1,5 +1,5 @@
 {
-    "baseUrl" : "https://localhost:44307/api",
+    "baseUrl" : "http://localhost:44307/api",
     
     "firebaseConfig" : {
     "apiKey" : "AIzaSyCHTCE9Dt6JUofRp8_UP17oC-ZIxgbKG7Y",
