@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pet_Pillbox.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pet_Pillbox.Models;
 
 namespace Pet_Pillbox.Controllers
 {
@@ -25,6 +26,14 @@ namespace Pet_Pillbox.Controllers
             var allUsers = _repo.GetAllUsers();
 
             return Ok(allUsers);
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(User user)
+        {
+            _repo.AddUser(user);
+
+            return Ok(user);
         }
     }
 }
