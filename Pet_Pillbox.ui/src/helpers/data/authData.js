@@ -16,23 +16,6 @@ axios.interceptors.request.use(function (request) {
   return Promise.reject(err);
 });
 
-// const registerUser = (user) => {
-//   //sub out whatever auth method firebase provides that you want to use.
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   return firebase.auth().signInWithPopup(provider).then(cred => {
-
-//     //get UID from firebase
-//     let userInfo = {uid: cred.user.uid};
-
-//     //get token from firebase
-//     cred.user.getIdToken()
-//       //save the token to the session storage
-//       .then(token => sessionStorage.setItem('token',token))
-//       //save the user to the the api
-//       .then(() => axios.post(`${baseUrl}/users`,userInfo));
-//   });
-// };
-
 const loginUser = () => {
   //sub out whatever auth method firebase provides that you want to use.
   const provider = new firebase.auth.GoogleAuthProvider();
