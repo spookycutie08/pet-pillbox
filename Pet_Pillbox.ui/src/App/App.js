@@ -11,6 +11,8 @@ import NavNavbar from '../components/shared/NavNavbar/NavNavbar'
 
 import Auth from '../components/shared/Auth/Auth'
 import Home from '../components/pages/Home/Home'
+import MedHistory from '../components/pages/MedHistory/MedHistory'
+import MedList from '../components/pages/MedList/MedList'
 import Pets from '../components/pages/Pets/Pets'
 
 
@@ -62,6 +64,8 @@ class App extends React.Component {
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
 
                 <PrivateRoute path="/home" component={Home} authed={authed} />
+                <PrivateRoute path="/medlist" component={MedList} authed={authed} />
+                <PrivateRoute path="/medhistory" component={MedHistory} authed={authed} />
                 <PrivateRoute path="/pets" component={Pets} authed={authed} />
 
                 <Redirect from="*" to="/auth" />

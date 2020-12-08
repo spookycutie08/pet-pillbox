@@ -1,29 +1,27 @@
-// import React from "react";
-// import "./Customers.scss";
-// import customerData  from "../../../helpers/data/customerData";
-// import SingleCustomer from "../../shared/SingleCustomer/SingleCustomer";
+import React from "react";
+import "./Pets.scss";
 
-// class Pets extends React.Component {
+class Pets extends React.Component {
     
-//     state = { pets: [] };
+    // state = { pets: [] };
     
-//     componentDidMount() {
-//         PetsData.getAllCustomers()
-//             .then(pets => { this.setState({pets})});
-//     }
+    // componentDidMount() {
+    //     PetsData.getAllCustomers()
+    //         .then(pets => { this.setState({pets})});
+    // }
 
-//     render() {
-//         const {pets} = this.state;
-//         const buildCustomerList = customers.map((customer) => {
-//             return (<SingleCustomer key={customer.id} customer={customer}/>)
-//         });
+    render() {
+        // const {pets} = this.state;
+        // const buildCustomerList = customers.map((customer) => {
+        //     return (<SingleCustomer key={customer.id} customer={customer}/>)
+        // });
         
-//         return (
-//             <>
-//             {buildCustomerList}
-//             </>
-//         );
-//     }
-// }
+        return (
+            <div>
+                <h1>Pets component</h1>
+            </div>
+        );
+    }
+}
 
-// export default Customers;
+export default Pets;
