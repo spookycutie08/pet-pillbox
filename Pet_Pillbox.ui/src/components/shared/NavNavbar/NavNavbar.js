@@ -1,5 +1,7 @@
 import './NavNavbar.scss';
 
+import firebase from 'firebase'
+
 import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { Nav, NavbarBrand, NavItem, NavLink } from 'reactstrap'
@@ -7,7 +9,23 @@ import { Nav, NavbarBrand, NavItem, NavLink } from 'reactstrap'
 
 class NavNavbar extends React.Component {
 
+    logoutEvent = (e) => {
+        e.preventDefault();
+        firebase.auth().signOut();
+      }
+
     render() {
+        const showLogout = () => {
+            const { authed } = this.props;
+            if (authed) {
+                return (
+                    <NavItem>
+                        <NavLink onClick={this.logoutEvent}>Logout</NavLink>
+                    </NavItem>
+                )
+            }
+        };
+
         return (
             <div className="NavNavbar">
                 <Nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,7 +40,8 @@ class NavNavbar extends React.Component {
                         <NavItem>
                             <NavLink tag={RRNavLink} to='/pets'>Pets</NavLink>
                         </NavItem>
-                    </div>
+                        {showLogout()}
+                        </div>
                 </Nav>
             </div>
         );

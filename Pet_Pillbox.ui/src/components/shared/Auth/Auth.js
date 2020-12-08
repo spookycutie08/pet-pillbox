@@ -23,24 +23,11 @@ class Auth extends React.Component {
             console.error('there was a problem logging in:', error);
           });
       };
-
-      logoutClickEvent = (e) => {
-        e.preventDefault();
-        authData
-          .logoutUser()
-          .then(() => {
-            this.props.history.push('/auth');
-          })
-          .catch(error => {
-            console.error('there was a problem logging out:', error);
-          });
-      };
     
     render() {
         return (
             <div>
                 <button onClick={this.loginClickEvent} type="button" className="btn btn-primary">Google Login</button>
-                <button onClick={this.logoutClickEvent} type="button" className="btn btn-dark">Logout</button>
             </div>
         );
     }
