@@ -16,6 +16,9 @@ class Auth extends React.Component {
         e.preventDefault();
         authData
           .loginUser()
+          .then(() => {
+            this.props.history.push('/home');
+          })
           .catch(error => {
             console.error('there was a problem logging in:', error);
           });
@@ -25,6 +28,9 @@ class Auth extends React.Component {
         e.preventDefault();
         authData
           .logoutUser()
+          .then(() => {
+            this.props.history.push('/auth');
+          })
           .catch(error => {
             console.error('there was a problem logging out:', error);
           });
