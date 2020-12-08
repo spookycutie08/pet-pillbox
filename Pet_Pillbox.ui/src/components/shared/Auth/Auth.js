@@ -1,3 +1,5 @@
+import './Auth.scss';
+
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
@@ -14,17 +16,11 @@ class Auth extends React.Component {
         e.preventDefault();
         authData
           .loginUser()
+          .then(() => {
+            this.props.history.push('/home');
+          })
           .catch(error => {
             console.error('there was a problem logging in:', error);
-          });
-      };
-
-      logoutClickEvent = (e) => {
-        e.preventDefault();
-        authData
-          .logoutUser()
-          .catch(error => {
-            console.error('there was a problem logging out:', error);
           });
       };
     
@@ -32,7 +28,6 @@ class Auth extends React.Component {
         return (
             <div>
                 <button onClick={this.loginClickEvent} type="button" className="btn btn-primary">Google Login</button>
-                <button onClick={this.logoutClickEvent} type="button" className="btn btn-dark">Logout</button>
             </div>
         );
     }

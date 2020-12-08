@@ -1,26 +1,82 @@
 import './App.scss';
 
-import Auth from '../components/shared/Auth/Auth'
+import fbConnection from '../helpers/data/connection';
 
-import fbConnection from "../helpers/data/connection";
+import firebase from 'firebase';
+import 'firebase/auth';
+import React from 'react';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
+
+import NavNavbar from '../components/shared/NavNavbar/NavNavbar'
+
+import Auth from '../components/shared/Auth/Auth'
+import Home from '../components/pages/Home/Home'
+import MedHistory from '../components/pages/MedHistory/MedHistory'
+import MedList from '../components/pages/MedList/MedList'
+import Pets from '../components/pages/Pets/Pets'
+
 
 fbConnection();
 
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === false
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Pet Pillbox</h1>
-      <Auth></Auth>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/Auth" component={Auth}></Route>
-          {/* <Route path="/Pets" component={Pets}></Route> */}
-        </Switch>
-      </BrowserRouter>
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === true
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+
+class App extends React.Component {
+  state = {
+    authed: false,
+  }
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
+  render() {
+    const { authed } = this.state;
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <React.Fragment>
+            <NavNavbar authed={authed} />
+            <div className="container col-12">
+              <div className="col-12">
+              <Switch>
+                <PublicRoute path="/auth" component={Auth} authed={authed} />
+
+                <PrivateRoute path="/home" component={Home} authed={authed} />
+                <PrivateRoute path="/medlist" component={MedList} authed={authed} />
+                <PrivateRoute path="/medhistory" component={MedHistory} authed={authed} />
+                <PrivateRoute path="/pets" component={Pets} authed={authed} />
+
+                <Redirect from="*" to="/auth" />
+              </Switch>
+              </div>
+            </div>
+          </React.Fragment>
+        </BrowserRouter>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
