@@ -27,6 +27,21 @@ namespace Pet_Pillbox.Data
             return users.ToList();
         }
 
+        public User GetUserByUid(string uid)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from Users
+                            where FirebaseUid = @Fbuid";
+
+            var parameters = new { Fbuid = uid };
+
+
+            var user = db.QueryFirstOrDefault<User>(query, parameters);
+
+            return user;
+        }
+
         public void AddUser(User userToAdd)
         {
             var sql = @"INSERT INTO [dbo].[Users]
@@ -42,5 +57,6 @@ namespace Pet_Pillbox.Data
             userToAdd.Id = newId;
 
         }
+
     }
 }

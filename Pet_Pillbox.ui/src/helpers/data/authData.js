@@ -16,6 +16,11 @@ axios.interceptors.request.use(function (request) {
   return Promise.reject(err);
 });
 
+const checkIfNewUser = (uid) => {
+  const existingUser = axios.get(`${baseUrl}/users/${uid}`)
+  return existingUser;
+};
+
 const loginUser = () => {
   //sub out whatever auth method firebase provides that you want to use.
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -26,7 +31,17 @@ const loginUser = () => {
     cred.user.getIdToken()
         //save the token to the session storage
       .then(token => sessionStorage.setItem('token',token))
-      .then(() => axios.post(`${baseUrl}/users`,userInfo))
+      .then(() => {
+        if(checkIfNewUser(userInfo.firebaseUid)) {
+          console.log('already got this user'); 
+        } else {
+          axios.post(`${baseUrl}/users`,userInfo)
+          console.log('gonna post!');
+          
+        }
+      }
+      )
+      // .then(() => axios.post(`${baseUrl}/users`,userInfo))
       
   });
 };
