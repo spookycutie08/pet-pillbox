@@ -17,8 +17,16 @@ axios.interceptors.request.use(function (request) {
 });
 
 const checkIfNewUser = (uid) => {
-  const existingUser = axios.get(`${baseUrl}/users/${uid}`)
-  return existingUser;
+  var existingUser = {};
+  axios.get(`${baseUrl}/users/${uid}`)
+  .then((response) => {
+    existingUser.firebaseUid = response.data.firebaseUid;
+    console.log('response.data:', response.data);
+    console.log('return?:', existingUser)
+    return existingUser;
+  });
+  // console.log('exists:', existingUser.firebaseUid);
+  
 };
 
 const loginUser = () => {
@@ -27,18 +35,36 @@ const loginUser = () => {
   return firebase.auth().signInWithPopup(provider).then(cred => {
     //get token from firebase
     let userInfo = {firebaseUid: cred.user.uid};
-    
+  
     cred.user.getIdToken()
         //save the token to the session storage
       .then(token => sessionStorage.setItem('token',token))
       .then(() => {
-        if(checkIfNewUser(userInfo.firebaseUid)) {
-          console.log('already got this user'); 
-        } else {
-          axios.post(`${baseUrl}/users`,userInfo)
-          console.log('gonna post!');
+        // var userExists = checkIfNewUser(userInfo.firebaseUid);
+        // var existingUser = {};
+        // axios.get(`${baseUrl}/users/${userInfo.firebaseUid}`)
+        //   .then((response) => {
+        //     existingUser.firebaseUid = response.data.firebaseUid;
+        //     console.log('response:', response);
+        //     if(existingUser.firebaseUid) {
+        //       console.log('already got this user:', existingUser.firebaseUid); 
+        //     } else {
+        //       //axios.post(`${baseUrl}/users`, userInfo);
+        //       console.log('posting:', userInfo.firebaseUid);
+        //     }
+        //   })
+
+        var existingUser = axios.get(`${baseUrl}/users/${userInfo.firebaseUid}`)
           
-        }
+            console.log('response:', existingUser);
+            if(existingUser.firebaseUid) {
+              console.log('already got this user:', existingUser.firebaseUid); 
+            } else {
+              //axios.post(`${baseUrl}/users`, userInfo);
+              console.log('posting:', userInfo.firebaseUid);
+            }
+          
+        
       }
       )
       // .then(() => axios.post(`${baseUrl}/users`,userInfo))
