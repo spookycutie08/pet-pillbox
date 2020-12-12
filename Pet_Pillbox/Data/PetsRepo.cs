@@ -26,5 +26,23 @@ namespace Pet_Pillbox.Data
 
             return pets.ToList();
         }
+
+        public List<Pet> GetPetsByUser(string uid)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from Pets
+                            join Users
+                            on Pets.UserId = Users.Id
+                            where FirebaseUid = @Fbuid";
+
+            var parameters = new { Fbuid = uid };
+
+
+            var pets = db.Query<Pet>(query, parameters);
+
+            return (List<Pet>) pets;
+        }
+
     }
 }

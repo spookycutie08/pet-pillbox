@@ -16,19 +16,6 @@ axios.interceptors.request.use(function (request) {
   return Promise.reject(err);
 });
 
-const checkIfNewUser = (uid) => {
-  var existingUser = {};
-  axios.get(`${baseUrl}/users/${uid}`)
-    .then((response) => {
-      existingUser.firebaseUid = response.data.firebaseUid;
-      console.log('response.data:', response.data);
-      console.log('return?:', existingUser)
-      return existingUser;
-    });
-  // console.log('exists:', existingUser.firebaseUid);
-
-};
-
 const checkForExistingUser = (user) => new Promise((resolve, reject) => {
   var existingUser = {};
   axios.get(`${baseUrl}/users/${user.firebaseUid}`)

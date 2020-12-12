@@ -16,7 +16,6 @@ namespace Pet_Pillbox.Controllers
 
     [Route("api/pets")]
     [ApiController]
-    [Authorize]
     public class PetsController : FirebaseEnabledController
     {
         PetsRepository _repo;
@@ -32,6 +31,16 @@ namespace Pet_Pillbox.Controllers
             var allPets = _repo.GetAllPets();
 
             return Ok(allPets);
+        }
+
+        [HttpGet("{uid}")]
+        public IActionResult GetPetsByUser(string uid)
+        {
+            var pets = _repo.GetPetsByUser(uid);
+
+            if (pets == null) return NotFound("No pets yet");
+
+            return Ok(pets);
         }
     }
 }
