@@ -45,5 +45,22 @@ namespace Pet_Pillbox.Data
             return (List<Pet>) pets;
         }
 
+        public void AddPet(Pet petToAdd)
+        {
+            var sql = @"INSERT INTO [dbo].[Pets]
+                               ([Name]
+                               ,[UserId])
+                        Output inserted.Id
+                        VALUES
+                               (@name,@userId)";
+
+            using var db = new SqlConnection(_connectionString);
+
+            var newId = db.ExecuteScalar<int>(sql, petToAdd);
+
+            petToAdd.Id = newId;
+
+        }
+
     }
 }

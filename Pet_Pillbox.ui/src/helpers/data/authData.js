@@ -56,7 +56,6 @@ const getUid = () => {
 const getUserByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/users/${uid}`)
   .then((response) => {
-    console.log('response:', response.data);
     resolve(response.data);
   })
   .catch((err) => reject(err));

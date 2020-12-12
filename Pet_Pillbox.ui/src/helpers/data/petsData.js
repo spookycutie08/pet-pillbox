@@ -9,8 +9,7 @@ const getPetsByUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const addNewPet = (newPet) => {
-    console.log('new pet:', newPet);
-    //axios.post(`${baseUrl}/pets`, newPet)
+    axios.post(`${baseUrl}/pets`, newPet)
 };
 
 export default { addNewPet, getPetsByUser };

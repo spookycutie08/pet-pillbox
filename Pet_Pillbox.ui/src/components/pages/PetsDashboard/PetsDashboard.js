@@ -28,11 +28,21 @@ class PetsDashboard extends React.Component {
         
     }
 
-    componentDidMount() {
-        const userUid = authData.getUid()
+    getPetsForDashboard = () => {
+        const userUid = authData.getUid();
         petsData.getPetsByUser(userUid)
             .then(pets => { this.setState({ pets }) });
+    };
+
+    componentDidMount() {
+        this.getPetsForDashboard();
     }
+
+    componentDidUpdate(prevState) {
+        if (prevState.pets !== this.state.pets) {
+            this.getPetsForDashboard();
+        }
+      }
 
     nameChange = (e) => {
         e.preventDefault();
@@ -46,9 +56,7 @@ class PetsDashboard extends React.Component {
             userId: this.state.user.id,
         }
         petsData.addNewPet(newPet)
-        // .then(() => this.toggle());
         this.toggle();
-        console.log('added:', newPet);
         
     };
 

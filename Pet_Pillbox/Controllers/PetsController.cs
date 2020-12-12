@@ -6,6 +6,7 @@ using Pet_Pillbox.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Pet_Pillbox.Models;
 
 namespace Pet_Pillbox.Controllers
 {
@@ -41,6 +42,14 @@ namespace Pet_Pillbox.Controllers
             if (pets == null) return NotFound("No pets yet");
 
             return Ok(pets);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewPet(Pet newPet)
+        {
+            _repo.AddPet(newPet);
+
+            return Created($"/api/pets", newPet);
         }
     }
 }
