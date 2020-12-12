@@ -28,6 +28,16 @@ namespace Pet_Pillbox.Controllers
             return Ok(allUsers);
         }
 
+        [HttpGet("{uid}")]
+        public IActionResult GetUserByUid(string uid)
+        {
+            var user = _repo.GetUserByUid(uid);
+
+            if (user == null) return NotFound("No user found with that Firebase uid");
+
+            return Ok(user);
+        }
+
         [HttpPost]
         public IActionResult AddUser(User user)
         {
