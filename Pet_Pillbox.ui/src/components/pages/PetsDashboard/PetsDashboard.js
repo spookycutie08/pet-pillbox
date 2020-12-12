@@ -71,6 +71,7 @@ class PetsDashboard extends React.Component {
             <div className="PetsDashboard col-12">
                 <h1>Pets</h1>
                 {buildPetsList}
+                <br/>
                 <button className='btn btn-primary' onClick={this.toggle}>Add New Pet</button>
                 <Collapse isOpen={isOpen} className='col-3 collapse-form'>
                     <label htmlFor="petName">New Pet Name</label>

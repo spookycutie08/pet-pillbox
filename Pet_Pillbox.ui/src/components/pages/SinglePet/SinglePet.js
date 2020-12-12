@@ -5,9 +5,10 @@ import "./SinglePet.scss";
 class SinglePet extends React.Component {
     render() {
         const { pet } = this.props;
+        const linkPath = `/medlist/${pet.id}`;
         return (
             <div>
-                <a>{pet.name}</a>
+                <Link to={linkPath}>{pet.name}</Link>
             </div>
         );
     }
