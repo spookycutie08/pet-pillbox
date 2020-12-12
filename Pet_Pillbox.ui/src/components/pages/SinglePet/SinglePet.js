@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SinglePet.scss";
 
 class SinglePet extends React.Component {
     render() {
+        const { pet } = this.props;
         return (
-            <h4>Single Pet</h4>
+            <div>
+                <Link>{pet.name}</Link>
+            </div>
         );
     }
 }

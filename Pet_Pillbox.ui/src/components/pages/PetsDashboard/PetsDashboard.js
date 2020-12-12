@@ -1,6 +1,7 @@
 import React from "react";
 import "./PetsDashboard.scss";
 
+import authData from '../../../helpers/data/authData'
 import petsData from '../../../helpers/data/petsData';
 
 import SinglePet from '../SinglePet/SinglePet'
@@ -10,7 +11,8 @@ class PetsDashboard extends React.Component {
     state = { pets: [] };
     
     componentDidMount() {
-        petsData.getPetsByUser()
+        const userUid = authData.getUid()
+        petsData.getPetsByUser(userUid)
             .then(pets => { this.setState({pets})});
     }
 
@@ -22,7 +24,8 @@ class PetsDashboard extends React.Component {
         
         return (
             <div>
-                <h1>Pets component</h1>
+                <h1>Pets</h1>
+                {buildPetsList}
             </div>
         );
     }
