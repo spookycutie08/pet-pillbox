@@ -8,4 +8,9 @@ const getPetsByUser = (uid) => new Promise((resolve, reject) => {
         .catch(error => reject(error));
 });
 
-export default { getPetsByUser };
+const addNewPet = (newPet) => {
+    console.log('new pet:', newPet);
+    //axios.post(`${baseUrl}/pets`, newPet)
+};
+
+export default { addNewPet, getPetsByUser };

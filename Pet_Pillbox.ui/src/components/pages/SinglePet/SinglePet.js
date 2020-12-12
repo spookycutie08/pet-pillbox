@@ -7,7 +7,7 @@ class SinglePet extends React.Component {
         const { pet } = this.props;
         return (
             <div>
-                <Link>{pet.name}</Link>
+                <a>{pet.name}</a>
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Collapse } from 'reactstrap';
 import "./PetsDashboard.scss";
 
 import authData from '../../../helpers/data/authData'
@@ -8,24 +9,66 @@ import SinglePet from '../SinglePet/SinglePet'
 
 class PetsDashboard extends React.Component {
     
-    state = { pets: [] };
-    
+
+    state = {
+        pets: [],
+        isOpen: false,
+
+        uid: authData.getUid(),
+        petName: '',
+        user: {},
+    };
+
+    toggle = () => {
+        this.setState({ isOpen: !this.state.isOpen });
+        authData.getUserByUid(this.state.uid)
+        .then((response) =>{
+            this.setState({ user: response});
+        });
+        
+    }
+
     componentDidMount() {
         const userUid = authData.getUid()
         petsData.getPetsByUser(userUid)
-            .then(pets => { this.setState({pets})});
+            .then(pets => { this.setState({ pets }) });
     }
 
-    render() {
-        const {pets} = this.state;
-        const buildPetsList = pets.map((p) => {
-            return (<SinglePet key={p.id} pet={p}/>)
-        });
+    nameChange = (e) => {
+        e.preventDefault();
+        this.setState({ petName: e.target.value });
+    }
+
+    savePet = (e) => {
+        e.preventDefault();
+        const newPet = {
+            name: this.state.petName,
+            userId: this.state.user.id,
+        }
+        petsData.addNewPet(newPet)
+        // .then(() => this.toggle());
+        this.toggle();
+        console.log('added:', newPet);
         
+    };
+
+    render() {
+        const { pets, isOpen, petName } = this.state;
+
+        const buildPetsList = pets.map((p) => {
+            return (<SinglePet key={p.id} pet={p} />)
+        });
+
         return (
-            <div>
+            <div className="PetsDashboard col-12">
                 <h1>Pets</h1>
                 {buildPetsList}
+                <button className='btn btn-primary' onClick={this.toggle}>Add New Pet</button>
+                <Collapse isOpen={isOpen} className='col-3 collapse-form'>
+                    <label htmlFor="petName">New Pet Name</label>
+                    <input type="text" value={petName} onChange={this.nameChange} className="form-control" id="petName" aria-describedby="inputPetName" />
+                    <button className="btn btn-success" type="submit" onClick={this.savePet}>Submit</button>
+                </Collapse>
             </div>
         );
     }

@@ -53,8 +53,18 @@ const getUid = () => {
   return firebase.auth().currentUser.uid;
 };
 
+const getUserByUid = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/users/${uid}`)
+  .then((response) => {
+    console.log('response:', response.data);
+    resolve(response.data);
+  })
+  .catch((err) => reject(err));
+});
+
 export default {
   getUid,
+  getUserByUid,
   loginUser,
   logoutUser,
 };

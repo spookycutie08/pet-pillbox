@@ -31,7 +31,8 @@ namespace Pet_Pillbox.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select * from Pets
+            var query = @"select Pets.Id, Pets.Name, Pets.UserId, Users.FirebaseUid
+                            from Pets
                             join Users
                             on Pets.UserId = Users.Id
                             where FirebaseUid = @Fbuid";
