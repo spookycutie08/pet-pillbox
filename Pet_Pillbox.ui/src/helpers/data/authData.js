@@ -61,6 +61,7 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
   .catch((err) => reject(err));
 });
 
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   getUid,
   getUserByUid,
