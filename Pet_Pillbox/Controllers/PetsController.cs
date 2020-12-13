@@ -44,6 +44,16 @@ namespace Pet_Pillbox.Controllers
             return Ok(pets);
         }
 
+        [HttpGet("id/{petId}")]
+        public IActionResult GetSinglePet(int petId)
+        {
+            var singlePet = _repo.GetSinglePet(petId);
+
+            if (singlePet == null) return NotFound("No pet found with that ID.");
+
+            return Ok(singlePet);
+        }
+
         [HttpPost]
         public IActionResult AddNewPet(Pet newPet)
         {

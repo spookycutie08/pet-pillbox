@@ -45,6 +45,21 @@ namespace Pet_Pillbox.Data
             return (List<Pet>) pets;
         }
 
+        public Pet GetSinglePet(int petId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from Pets
+                            where PetId = @pid";
+
+            var parameters = new { pid = petId };
+
+
+            var singlePet = db.QueryFirstOrDefault<Pet>(query, parameters);
+
+            return singlePet;
+        }
+
         public void AddPet(Pet petToAdd)
         {
             var sql = @"INSERT INTO [dbo].[Pets]
