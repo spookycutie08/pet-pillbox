@@ -6,23 +6,26 @@ import doseTypesData from '../../../helpers/data/doseTypesData';
 
 class MedListTable extends React.Component {
     state = {
-        doseTypes: [],
+        doseType: ''
     }
-    
+
+    componentDidMount = () => {
+        const { med } = this.props;
+        const typeId = med.doseTypeId;
+            doseTypesData.getSingleDoseType(typeId)
+            .then((dose) => {
+                this.setState({ doseType: dose.description})
+            })
+    };
+
     render() {
         const { med } = this.props;
-        const getDoseTypeInfo = (id) => {
-            doseTypesData.getSingleDoseType(id)
-            .then((dose) => {
-                med.doseDesc = dose.description;
-            })
-        };
 
         if (med) {
             return (
                 <tr>
                     <td>{med.name}</td>
-                    <td>{med.doseAmount} {med.doseDesc}</td>
+                    <td>{med.doseAmount} {this.state.doseType}</td>
                     <td>{med.hoursBetweenDoses} hours</td>
                     <td>{med.endDate}</td>
                 </tr>

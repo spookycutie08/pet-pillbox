@@ -2,7 +2,6 @@ import './MedList.scss';
 
 import React from 'react';
 
-import doseTypesData from '../../../helpers/data/doseTypesData';
 import medListData from '../../../helpers/data/medListData';
 import petsData from '../../../helpers/data/petsData';
 
