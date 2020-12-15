@@ -1,6 +1,7 @@
 import './MedList.scss';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import medListData from '../../../helpers/data/medListData';
 import petsData from '../../../helpers/data/petsData';
@@ -38,6 +39,9 @@ class MedList extends React.Component {
         return (
             <div>
                 <h1>{pet.name}'s Current Medications</h1>
+
+                <Link className='btn btn-primary' to='/addMed'>Add Medication</Link>
+
                 <table className="table">
                     <thead>
                         <tr>
