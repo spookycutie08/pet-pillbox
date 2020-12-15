@@ -50,7 +50,7 @@ namespace Pet_Pillbox.Data
             using var db = new SqlConnection(_connectionString);
 
             var query = @"select * from Pets
-                            where PetId = @pid";
+                            where Id = @pid";
 
             var parameters = new { pid = petId };
 
