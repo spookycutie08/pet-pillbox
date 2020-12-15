@@ -26,5 +26,20 @@ namespace Pet_Pillbox.Data
 
             return medications.ToList();
         }
+
+        public List<Medication> GetMedsByPetId(int petId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from Medications
+                            where PetId = @pid";
+
+            var parameters = new { pid = petId };
+
+
+            var petMeds = db.Query<Medication>(query, parameters);
+
+            return (List<Medication>)petMeds;
+        }
     }
 }

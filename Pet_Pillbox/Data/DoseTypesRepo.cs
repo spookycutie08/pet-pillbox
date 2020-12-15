@@ -26,5 +26,20 @@ namespace Pet_Pillbox.Data
 
             return doseTypes.ToList();
         }
+
+        public DoseType GetSingleDoseType(int doseTypeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from DoseTypes
+                            where Id = @dtid";
+
+            var parameters = new { dtid = doseTypeId };
+
+
+            var singleDoseType = db.QueryFirstOrDefault<DoseType>(query, parameters);
+
+            return singleDoseType;
+        }
     }
 }

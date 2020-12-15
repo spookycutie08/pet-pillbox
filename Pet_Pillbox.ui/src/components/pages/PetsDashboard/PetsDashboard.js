@@ -5,11 +5,9 @@ import "./PetsDashboard.scss";
 import authData from '../../../helpers/data/authData'
 import petsData from '../../../helpers/data/petsData';
 
-import SinglePet from '../SinglePet/SinglePet'
+import SinglePet from '../../shared/SinglePet/SinglePet'
 
 class PetsDashboard extends React.Component {
-    
-
     state = {
         pets: [],
         isOpen: false,

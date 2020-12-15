@@ -26,5 +26,15 @@ namespace Pet_Pillbox.Controllers
 
             return Ok(allDoseTypes);
         }
+
+        [HttpGet("{doseTypeId}")]
+        public IActionResult GetSingleDoseType(int doseTypeId)
+        {
+            var singleDoseType = _repo.GetSingleDoseType(doseTypeId);
+
+            if (singleDoseType == null) return NotFound("No dose type found with that ID.");
+
+            return Ok(singleDoseType);
+        }
     }
 }
