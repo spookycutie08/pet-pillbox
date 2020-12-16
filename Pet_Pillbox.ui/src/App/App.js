@@ -65,7 +65,7 @@ class App extends React.Component {
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
 
                 <PrivateRoute path="/home" component={Home} authed={authed} />
-                <PrivateRoute path="/addMed" component={AddMedForm} authed={authed} />
+                <PrivateRoute path="/addMed/:petId" component={AddMedForm} authed={authed} />
                 <PrivateRoute path="/medlist/:petId" component={MedList} authed={authed} />
                 <PrivateRoute path="/medhistory" component={MedHistory} authed={authed} />
                 <PrivateRoute path="/pets" component={PetsDashboard} authed={authed} />

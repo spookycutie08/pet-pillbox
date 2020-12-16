@@ -36,11 +36,12 @@ class MedList extends React.Component {
         const buildMedsTable = meds.map((med) => {
             return <MedListTable key={med.id} med={med}/>
         })
+        const addMedLink = `/addMed/${pet.id}`;
         return (
             <div>
                 <h1>{pet.name}'s Current Medications</h1>
 
-                <Link className='btn btn-primary' to='/addMed'>Add Medication</Link>
+                <Link className='btn btn-primary' to={addMedLink}>Add Medication</Link>
 
                 <table className="table">
                     <thead>
