@@ -35,7 +35,7 @@ class AddMedForm extends React.Component {
                         <Label for="medDoseType">Form</Label>
                         <Input type="select" name="medDoseType" id="medDoseType">
                             {this.state.doseTypes.map((oneDose) => (
-                                <option id={oneDose.id}>{oneDose.description}</option>
+                                <option id={oneDose.id} key={oneDose.id}>{oneDose.description}</option>
                             ))}
                         </Input>
                     </FormGroup>
