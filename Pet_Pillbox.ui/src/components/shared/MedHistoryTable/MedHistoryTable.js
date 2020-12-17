@@ -1,17 +1,15 @@
-import './MedListTable.scss'
+import './MedHistoryTable.scss'
 
 import React from 'react';
-
-import doseTypesData from '../../../helpers/data/doseTypesData';
 import { Link } from 'react-router-dom';
 
 class MedListTable extends React.Component {
     state = {
-        doseType: ''
+        log: []
     }
 
     componentDidMount = () => {
-        const { med } = this.props;
+        const { log } = this.props;
         const typeId = med.doseTypeId;
             doseTypesData.getSingleDoseType(typeId)
             .then((dose) => {

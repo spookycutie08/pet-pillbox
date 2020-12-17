@@ -34,7 +34,7 @@ class MedList extends React.Component {
     render() {
         const { meds, pet } = this.state;
         const buildMedsTable = meds.map((med) => {
-            return <MedListTable key={med.id} med={med}/>
+            return <MedListTable key={med.id} med={med} pet={pet}/>
         })
         const addMedLink = `/addMed/${pet.id}`;
         return (
@@ -50,6 +50,7 @@ class MedList extends React.Component {
                             <th scope="col">Dose</th>
                             <th scope="col">Every</th>
                             <th scope="col">End Date</th>
+                            <th scope="col">View History</th>
                         </tr>
 
                     </thead>
