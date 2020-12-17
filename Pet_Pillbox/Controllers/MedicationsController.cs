@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pet_Pillbox.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pet_Pillbox.Models;
 
 namespace Pet_Pillbox.Controllers
 {
@@ -35,6 +36,14 @@ namespace Pet_Pillbox.Controllers
             if (petMeds == null) return NotFound("No medications found for this pet.");
 
             return Ok(petMeds);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewMed(Medication newMed)
+        {
+            _repo.AddMed(newMed);
+
+            return Created($"/api/medications", newMed);
         }
     }
 }

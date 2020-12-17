@@ -41,5 +41,29 @@ namespace Pet_Pillbox.Data
 
             return (List<Medication>)petMeds;
         }
+
+        
+
+        public void AddMed(Medication medToAdd)
+        {
+            var sql = @"INSERT INTO [dbo].[Medications]
+                               ([Name]
+                                ,[HoursBetweenDoses]
+                                ,[StartDate]
+                                ,[EndDate]
+                                ,[DoseAmount]
+                                ,[DoseTypeId]
+                               ,[PetId])
+                        Output inserted.Id
+                        VALUES
+                               (@name,@hoursBetweenDoses,@startDate,@endDate,@doseAmount,@doseTypeId,@petId)";
+
+            using var db = new SqlConnection(_connectionString);
+
+            var newId = db.ExecuteScalar<int>(sql, medToAdd);
+
+            medToAdd.Id = newId;
+
+        }
     }
 }

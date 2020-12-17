@@ -5,6 +5,7 @@ import React from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 import doseTypesData from '../../../helpers/data/doseTypesData'
+import medListData from '../../../helpers/data/medListData'
 
 class AddMedForm extends React.Component {
     state = {
@@ -35,17 +36,20 @@ class AddMedForm extends React.Component {
         const num = this.state.medFreqNum;
         const units = this.state.medFreqUnit;
         const totalHours = parseInt(num)*parseInt(units);
+        const idOfPet = parseInt(this.props.match.params.petId);
+        const idOfDoseType = parseInt(this.state.doseTypeId);
+        const numOfDoseAmount = parseInt(this.state.doseAmount);
+        const medName = this.state.name;
         const newMedObject = {
-            a: totalHours,
-            name: this.state.name,
-            petId: this.props.match.params.petId,
-            medFreqUnit: this.state.medFreqUnit,
-            doseTypeId: this.state.doseTypeId,
-            startDate: Moment().format('MM/DD/YYYY'),
-            endDate: `${this.state.medStartMonth}/${this.state.medStartDay}/${this.state.medStartYear}`
+            hoursBetweenDoses: totalHours,
+            name: medName.charAt(0).toUpperCase() + medName.slice(1),
+            petId: idOfPet,
+            doseTypeId: idOfDoseType,
+            doseAmount: numOfDoseAmount,
+            startDate: Moment().format('YYYY-MM-DD'),
+            endDate: `${this.state.medStartYear}-${this.state.medStartMonth}-${this.state.medStartDay}`
         }
-        console.log('new med: ', newMedObject);
-        
+        medListData.addNewMed(newMedObject);
     };
 
     updateForm = (e) => {
