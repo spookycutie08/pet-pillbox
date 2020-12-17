@@ -1,10 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from '../constants.json';
 
-const addNewMed = (newMed) => {
-    console.log('posting: ', newMed);
-    axios.post(`${baseUrl}/medications`, newMed)
-};
+const addNewMed = (newMed) => axios.post(`${baseUrl}/medications`, newMed);
 
 const getMedsByPetId = (petId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/medications/${petId}`)

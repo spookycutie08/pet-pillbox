@@ -13,15 +13,12 @@ class AddMedForm extends React.Component {
         name: '',
         doseAmount: 0,
         doseTypeId: 10,
-        // hoursBetweenDoses: 0,
-        // startDate: '',
-        // endDate: '',
         medFreqNum: 0,
         medFreqUnit: 1,
         medStartMonth: 1,
         medStartDay: 1,
         medStartYear: 1999,
-        // petId: this.props.match.params.petId,
+        petId: this.props.match.params.petId,
     }
 
     componentDidMount = () => {
@@ -49,8 +46,12 @@ class AddMedForm extends React.Component {
             startDate: Moment().format('YYYY-MM-DD'),
             endDate: `${this.state.medStartYear}-${this.state.medStartMonth}-${this.state.medStartDay}`
         }
-        medListData.addNewMed(newMedObject);
-    };
+        console.log('obj; ', newMedObject);
+        
+        medListData.addNewMed(newMedObject)
+        .then(() => this.props.history.push(`/medlist/${this.state.petId}`))
+        .catch((err) => console.error('could not post new med:', err))
+     };
 
     updateForm = (e) => {
         e.preventDefault();
@@ -94,15 +95,15 @@ class AddMedForm extends React.Component {
                     <FormGroup>
                         <Label for="medEndDate">Until...</Label>
                         <Input type="select" name="medStartMonth" id="medStartMonth" onChange={this.updateForm}>
-                            <option value="1">Jan</option>
-                            <option value="2">Feb</option>
-                            <option value="3">Mar</option>
-                            <option value="4">Apr</option>
-                            <option value="5">May</option>
-                            <option value="6">Jun</option>
-                            <option value="7">Jul</option>
-                            <option value="8">Aug</option>
-                            <option value="9">Sep</option>
+                            <option value="01">Jan</option>
+                            <option value="02">Feb</option>
+                            <option value="03">Mar</option>
+                            <option value="04">Apr</option>
+                            <option value="05">May</option>
+                            <option value="06">Jun</option>
+                            <option value="07">Jul</option>
+                            <option value="08">Aug</option>
+                            <option value="09">Sep</option>
                             <option value="10">Oct</option>
                             <option value="11">Nov</option>
                             <option value="12">Dec</option>
