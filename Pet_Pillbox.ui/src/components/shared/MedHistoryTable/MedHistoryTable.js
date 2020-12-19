@@ -1,7 +1,6 @@
 import './MedHistoryTable.scss'
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class MedListTable extends React.Component {
     state = {

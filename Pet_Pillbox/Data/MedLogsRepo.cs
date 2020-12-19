@@ -40,5 +40,24 @@ namespace Pet_Pillbox.Data
 
             return (List<MedLog>)petLogs;
         }
+
+        public List<LastDoseLog> GetLastDosesByPetId(int petId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT Medications.Name, Medications.HoursBetweenDoses,
+                            (
+                            SELECT MAX(AdminDateTime) from MedLogs
+                            where MedicationId = Medications.Id
+                            ) as LastDoseDateTime
+                            from Medications
+                            where Medications.PetId = @pid";
+
+            var parameters = new { pid = petId };
+
+            var doseLogs = db.Query<LastDoseLog>(query, parameters);
+
+            return (List<LastDoseLog>)doseLogs;
+        }
     }
 }

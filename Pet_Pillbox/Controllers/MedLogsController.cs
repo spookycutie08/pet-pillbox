@@ -36,5 +36,15 @@ namespace Pet_Pillbox.Controllers
 
             return Ok(logs);
         }
+
+        [HttpGet("lastDoses/{petId}")]
+        public IActionResult GetLastDosesByPetId(int petId)
+        {
+            var logs = _repo.GetLastDosesByPetId(petId);
+
+            if (logs == null) return NotFound("No dosing history for this pet.");
+
+            return Ok(logs);
+        }
     }
 }
