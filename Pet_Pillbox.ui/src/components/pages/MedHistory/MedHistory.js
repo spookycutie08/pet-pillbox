@@ -3,37 +3,35 @@ import './MedHistory.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import medLogsData from '../../../helpers/data/medLogsData';
 import petsData from '../../../helpers/data/petsData';
+
+import MedHistoryTable from '../../shared/MedHistoryTable/MedHistoryTable';
 
 class MedHistory extends React.Component {
     state = {
-        pet: {},
+        logs: []
     };
-    getPetInfo = () => {
-        const petId = this.props.match.params.petId * 1;
-        petsData.getSinglePetById(petId)
-            .then(pet => { this.setState({ pet }) });
+
+    getMedLogs = () => {
+        const medId = this.props.match.params.medId * 1;
+        medLogsData.getMedLogsByMedId(medId)
+            .then(logs => { this.setState({ logs }) });
     };
     
     componentDidMount() {
-        this.getPetInfo();
+        this.getMedLogs();
     }
 
     render() {
-        const { pet } = this.state;
-        const buildHistoryTable = meds.map((med) => {
-            return <MedHistoryTable key={med.id} med={med} pet={pet}/>
+        const { logs } = this.state;
+        const buildHistoryTable = logs.map((log) => {
+            return <MedHistoryTable key={log.id} log={log}/>
         })
         return (
             <div>
-                <h1>{pet.name}'s Medication Log</h1>
+                <h1>Medication Log</h1>
                 <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Medication</th>
-                            <th scope="col">Date</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         {buildHistoryTable}
                     </tbody>

@@ -20,8 +20,8 @@ class MedListTable extends React.Component {
     };
 
     render() {
-        const { med, pet } = this.props;
-        const historyLink = `/history/${pet.id}`
+        const { med } = this.props;
+        const historyLink = `/history/${med.id}`
         if (med) {
             return (
                 <tr>
@@ -29,7 +29,7 @@ class MedListTable extends React.Component {
                     <td>{med.doseAmount} {this.state.doseType}</td>
                     <td>{med.hoursBetweenDoses} hours</td>
                     <td>{med.endDate}</td>
-                    <td><Link to={historyLink}><i class="fas fa-notes-medical"></i></Link></td>
+                    <td><Link to={historyLink}><i className="fas fa-notes-medical"></i></Link></td>
                 </tr>
             )
 

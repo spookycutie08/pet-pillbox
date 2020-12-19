@@ -26,5 +26,19 @@ namespace Pet_Pillbox.Data
 
             return medLogs.ToList();
         }
+
+        public List<MedLog> GetMedLogsByMedId(int medId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from MedLogs
+                            where MedicationId = @mid";
+
+            var parameters = new { mid = medId };
+
+            var petLogs = db.Query<MedLog>(query, parameters);
+
+            return (List<MedLog>)petLogs;
+        }
     }
 }

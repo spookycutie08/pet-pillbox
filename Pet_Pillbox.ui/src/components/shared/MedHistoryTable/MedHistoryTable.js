@@ -8,32 +8,18 @@ class MedListTable extends React.Component {
         log: []
     }
 
-    componentDidMount = () => {
-        const { log } = this.props;
-        const typeId = med.doseTypeId;
-            doseTypesData.getSingleDoseType(typeId)
-            .then((dose) => {
-                this.setState({ doseType: dose.description})
-            })
-    };
-
     render() {
-        const { med, pet } = this.props;
-        const historyLink = `/history/${pet.id}`
-        if (med) {
+        const { log } = this.props;
+        if (log) {
             return (
                 <tr>
-                    <td>{med.name}</td>
-                    <td>{med.doseAmount} {this.state.doseType}</td>
-                    <td>{med.hoursBetweenDoses} hours</td>
-                    <td>{med.endDate}</td>
-                    <td><Link to={historyLink}><i class="fas fa-notes-medical"></i></Link></td>
+                    <td>{log.adminDateTime}</td>
                 </tr>
             )
 
         } else {
             return (
-                <h4>This pet has no medications.</h4>
+                <h4>No logs for this medication.</h4>
             );
         }
     }
