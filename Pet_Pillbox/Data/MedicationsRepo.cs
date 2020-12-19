@@ -36,13 +36,10 @@ namespace Pet_Pillbox.Data
 
             var parameters = new { pid = petId };
 
-
             var petMeds = db.Query<Medication>(query, parameters);
 
             return (List<Medication>)petMeds;
         }
-
-        
 
         public void AddMed(Medication medToAdd)
         {

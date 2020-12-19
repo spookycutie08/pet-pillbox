@@ -3,6 +3,7 @@ import './MedListTable.scss'
 import React from 'react';
 
 import doseTypesData from '../../../helpers/data/doseTypesData';
+import { Link } from 'react-router-dom';
 
 class MedListTable extends React.Component {
     state = {
@@ -20,7 +21,7 @@ class MedListTable extends React.Component {
 
     render() {
         const { med } = this.props;
-
+        const historyLink = `/history/${med.id}`
         if (med) {
             return (
                 <tr>
@@ -28,6 +29,7 @@ class MedListTable extends React.Component {
                     <td>{med.doseAmount} {this.state.doseType}</td>
                     <td>{med.hoursBetweenDoses} hours</td>
                     <td>{med.endDate}</td>
+                    <td><Link to={historyLink}><i className="fas fa-notes-medical"></i></Link></td>
                 </tr>
             )
 

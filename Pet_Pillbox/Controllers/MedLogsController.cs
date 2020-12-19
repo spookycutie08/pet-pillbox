@@ -26,5 +26,15 @@ namespace Pet_Pillbox.Controllers
 
             return Ok(allMedLogs);
         }
+
+        [HttpGet("{medId}")]
+        public IActionResult GetMedLogsByMedId(int medId)
+        {
+            var logs = _repo.GetMedLogsByMedId(medId);
+
+            if (logs == null) return NotFound("No logs found for this medication.");
+
+            return Ok(logs);
+        }
     }
 }
