@@ -45,17 +45,28 @@ namespace Pet_Pillbox.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"SELECT Medications.Name,
-                            (
-                            SELECT MAX(AdminDateTime) from MedLogs
-                            where MedicationId = Medications.Id
-                            ) as LastDoseDateTime
-                            from Medications
-                            where Medications.PetId = @pid
-                            and DATEADD(HOUR, Medications.HoursBetweenDoses * -1, getdate()) > (
-                            SELECT MAX(AdminDateTime) from MedLogs
-                            where MedicationId = Medications.Id
-                            )";
+            var query = @"SELECT Medications.Name, (SELECT MAX(AdminDateTime) from MedLogs where MedicationId = Medications.Id) as LastDoseDateTime
+                        from Medications
+                        where Medications.PetId = @pid
+                        and 
+	                        (
+	                        GETDATE() < Medications.EndDate
+	                        )
+                        and
+	                        (
+		                        Not Exists (
+		                        SELECT 1 from MedLogs
+		                        where MedicationId = Medications.Id
+		                        )
+		                    or 
+		                        (
+			                        DATEADD(HOUR, Medications.HoursBetweenDoses * -1, getdate()) > 
+			                        (
+			                        SELECT MAX(AdminDateTime) from MedLogs
+			                        where MedicationId = Medications.Id
+			                        )
+		                        )
+	                        )";
 
             var parameters = new { pid = petId };
 

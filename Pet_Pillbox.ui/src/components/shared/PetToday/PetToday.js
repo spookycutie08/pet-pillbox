@@ -10,23 +10,25 @@ class PetToday extends React.Component {
     state = {
         currentDateTime: this.props.currentDateTime,
         pet: this.props.pet,
-        lastDoses: []
+        medsDue: []
     }
 
-    setLastDoses = () => {
+    
+
+    setMedsDue = () => {
         const petId = this.state.pet.id;
-        medLogsData.getLastDosesForPet(petId)
-        .then((lastDoses) => this.setState( { lastDoses }))
+        medLogsData.getMedsDueForPet(petId)
+        .then((medsDue) => this.setState( { medsDue }))
     };
 
     componentDidMount = () => {
-        this.setLastDoses();
+        this.setMedsDue();
     };
 
     render() {
-        const { lastDoses, pet } = this.state;
-        const buildMedsDue = lastDoses.map((entry) => {
-            return (<SingleMedDue key={entry.id} entry={entry}/>)
+        const { medsDue, pet } = this.state;
+        const buildMedsDue = medsDue.map((med) => {
+            return (<SingleMedDue key={med.id} med={med}/>)
         });
         return (
             <div>
