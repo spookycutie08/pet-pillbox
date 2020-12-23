@@ -74,5 +74,22 @@ namespace Pet_Pillbox.Data
 
             return (List<MedicationDue>)medsDue;
         }
+
+        public void AddNewLog(MedLog logToAdd)
+        {
+            var sql = @"INSERT INTO [dbo].[MedLogs]
+                               ([MedicationId]
+                                ,[AdminDateTime])
+                        Output inserted.Id
+                        VALUES
+                               (@medicationId,@adminDateTime)";
+
+            using var db = new SqlConnection(_connectionString);
+
+            var newId = db.ExecuteScalar<int>(sql, logToAdd);
+
+            logToAdd.Id = newId;
+
+        }
     }
 }

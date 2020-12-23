@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pet_Pillbox.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pet_Pillbox.Models;
 
 namespace Pet_Pillbox.Controllers
 {
@@ -45,6 +46,14 @@ namespace Pet_Pillbox.Controllers
             if (medsDue == null) return NotFound("No medications due for this pet.");
 
             return Ok(medsDue);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewLog(MedLog newLog)
+        {
+            _repo.AddNewLog(newLog);
+
+            return Created($"/api/medlogs", newLog);
         }
     }
 }

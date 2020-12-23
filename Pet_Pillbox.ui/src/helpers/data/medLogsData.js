@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from '../constants.json';
 
-// const addNewLog = (newLog) => axios.post(`${baseUrl}/medlogs`, newLog);
+const addNewLog = (newLog) => axios.post(`${baseUrl}/medlogs`, newLog);
 
 const getMedsDueForPet = (petId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/medlogs/lastDoses/${petId}`)
@@ -16,4 +16,4 @@ const getMedLogsByMedId = (medId) => new Promise((resolve, reject) => {
 });
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
-export default { getMedsDueForPet, getMedLogsByMedId };
+export default { addNewLog, getMedsDueForPet, getMedLogsByMedId };
