@@ -2,6 +2,8 @@ import "./PetToday.scss";
 
 import React from "react";
 
+import SingleMedDue from '../SingleMedDue/SingleMedDue';
+
 import medLogsData from '../../../helpers/data/medLogsData';
 
 class PetToday extends React.Component {
@@ -14,7 +16,7 @@ class PetToday extends React.Component {
     setLastDoses = () => {
         const petId = this.state.pet.id;
         medLogsData.getLastDosesForPet(petId)
-        .then((doseLogs) => this.setState( { lastDoses: doseLogs }))
+        .then((lastDoses) => this.setState( { lastDoses }))
     };
 
     componentDidMount = () => {
@@ -22,10 +24,14 @@ class PetToday extends React.Component {
     };
 
     render() {
-        const { pet } = this.props;
+        const { lastDoses, pet } = this.state;
+        const buildMedsDue = lastDoses.map((entry) => {
+            return (<SingleMedDue key={entry.id} entry={entry}/>)
+        });
         return (
             <div>
-                <p>{pet.name}</p>
+                <h3>{pet.name}</h3>
+                {buildMedsDue}
             </div>
         );
     }

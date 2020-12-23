@@ -38,7 +38,7 @@ class Home extends React.Component {
         });
         return (
             <div>
-                <h1>Today</h1>
+                <h1>Due Today</h1>
                 {buildPetsToday}
             </div>
         );
