@@ -13,8 +13,6 @@ class PetToday extends React.Component {
         medsDue: []
     }
 
-    
-
     setMedsDue = () => {
         const petId = this.state.pet.id;
         medLogsData.getMedsDueForPet(petId)

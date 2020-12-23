@@ -38,13 +38,13 @@ namespace Pet_Pillbox.Controllers
         }
 
         [HttpGet("lastDoses/{petId}")]
-        public IActionResult GetLastDosesByPetId(int petId)
+        public IActionResult GetMedsDueByPetId(int petId)
         {
-            var logs = _repo.GetLastDosesByPetId(petId);
+            var medsDue = _repo.GetMedsDueByPetId(petId);
 
-            if (logs == null) return NotFound("No dosing history for this pet.");
+            if (medsDue == null) return NotFound("No medications due for this pet.");
 
-            return Ok(logs);
+            return Ok(medsDue);
         }
     }
 }

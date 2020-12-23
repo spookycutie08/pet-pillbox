@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Pet_Pillbox.Models
 {
-    public class LastDoseLog
+    public class MedicationDue
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int HoursBetweenDoses { get; set; }
         public DateTime LastDoseDateTime { get; set; }
     }
 }
