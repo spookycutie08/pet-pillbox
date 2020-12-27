@@ -30,6 +30,8 @@ class MedHistory extends React.Component {
                 <h1>Medication Log</h1>
                 <table className="table">
                     <tbody>
+                        <th>Dose Amount</th>
+                        <th>When</th>
                         {buildHistoryTable}
                     </tbody>
                 </table>
