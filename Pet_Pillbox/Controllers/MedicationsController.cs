@@ -29,11 +29,11 @@ namespace Pet_Pillbox.Controllers
         }
 
         [HttpGet("{petId}")]
-        public IActionResult GetMedsByPetId(int petId)
+        public IActionResult GetCurrentMedsByPetId(int petId)
         {
-            var petMeds = _repo.GetMedsByPetId(petId);
+            var petMeds = _repo.GetCurrentMedsByPetId(petId);
 
-            if (petMeds == null) return NotFound("No medications found for this pet.");
+            if (petMeds == null) return NotFound("No active medications found for this pet.");
 
             return Ok(petMeds);
         }
