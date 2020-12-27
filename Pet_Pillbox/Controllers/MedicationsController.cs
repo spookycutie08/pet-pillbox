@@ -28,7 +28,17 @@ namespace Pet_Pillbox.Controllers
             return Ok(allMedications);
         }
 
-        [HttpGet("{petId}")]
+        [HttpGet("{medId}")]
+        public IActionResult GetSingleMedByMedId(int medId)
+        {
+            var medInfo = _repo.GetSingleMedByMedId(medId);
+
+            if (medInfo == null) return NotFound("Could not find medication with this Id.");
+
+            return Ok(medInfo);
+        }
+
+        [HttpGet("pet/{petId}")]
         public IActionResult GetCurrentMedsByPetId(int petId)
         {
             var petMeds = _repo.GetCurrentMedsByPetId(petId);
