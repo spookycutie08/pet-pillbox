@@ -32,7 +32,8 @@ namespace Pet_Pillbox.Data
             using var db = new SqlConnection(_connectionString);
 
             var query = @"select * from MedLogs
-                            where MedicationId = @mid";
+                            where MedicationId = @mid
+                            order by AdminDateTime Desc";
 
             var parameters = new { mid = medId };
 

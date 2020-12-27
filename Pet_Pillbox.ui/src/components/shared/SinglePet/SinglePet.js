@@ -5,7 +5,7 @@ import "./SinglePet.scss";
 class SinglePet extends React.Component {
     render() {
         const { pet } = this.props;
-        const linkPath = `/medlist/${pet.id}`;
+        const linkPath = `/medlist/pet/${pet.id}`;
         return (
             <div>
                 <Link to={linkPath}>{pet.name}</Link>

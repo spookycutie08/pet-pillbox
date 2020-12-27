@@ -27,12 +27,27 @@ namespace Pet_Pillbox.Data
             return medications.ToList();
         }
 
-        public List<Medication> GetMedsByPetId(int petId)
+        public Medication GetSingleMedByMedId(int medId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var query = @"select * from Medications
-                            where PetId = @pid";
+                            where Id = @mid";
+
+            var parameters = new { mid = medId };
+
+            var medInfo = db.QueryFirstOrDefault<Medication>(query, parameters);
+
+            return medInfo;
+        }
+
+        public List<Medication> GetCurrentMedsByPetId(int petId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * from Medications
+                            where PetId = @pid
+                            and EndDate >= GETDATE()";
 
             var parameters = new { pid = petId };
 
