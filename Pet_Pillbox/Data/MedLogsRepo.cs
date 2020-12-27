@@ -40,5 +40,56 @@ namespace Pet_Pillbox.Data
 
             return (List<MedLog>)petLogs;
         }
+
+        public List<MedicationDue> GetMedsDueByPetId(int petId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT Medications.Id, Medications.Name, (SELECT MAX(AdminDateTime) from MedLogs where MedicationId = Medications.Id) as LastDoseDateTime
+                        from Medications
+                        where Medications.PetId = @pid
+                        and 
+	                        (
+	                        GETDATE() < Medications.EndDate
+	                        )
+                        and
+	                        (
+		                        Not Exists (
+		                        SELECT 1 from MedLogs
+		                        where MedicationId = Medications.Id
+		                        )
+		                    or 
+		                        (
+			                        DATEADD(HOUR, Medications.HoursBetweenDoses * -1, getdate()) > 
+			                        (
+			                        SELECT MAX(AdminDateTime) from MedLogs
+			                        where MedicationId = Medications.Id
+			                        )
+		                        )
+	                        )";
+
+            var parameters = new { pid = petId };
+
+            var medsDue = db.Query<MedicationDue>(query, parameters);
+
+            return (List<MedicationDue>)medsDue;
+        }
+
+        public void AddNewLog(MedLog logToAdd)
+        {
+            var sql = @"INSERT INTO [dbo].[MedLogs]
+                               ([MedicationId]
+                                ,[AdminDateTime])
+                        Output inserted.Id
+                        VALUES
+                               (@medicationId,@adminDateTime)";
+
+            using var db = new SqlConnection(_connectionString);
+
+            var newId = db.ExecuteScalar<int>(sql, logToAdd);
+
+            logToAdd.Id = newId;
+
+        }
     }
 }

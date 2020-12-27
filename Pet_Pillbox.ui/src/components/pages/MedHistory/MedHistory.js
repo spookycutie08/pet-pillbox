@@ -1,12 +1,9 @@
 import './MedHistory.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import medLogsData from '../../../helpers/data/medLogsData';
-import petsData from '../../../helpers/data/petsData';
 
 import MedHistoryTable from '../../shared/MedHistoryTable/MedHistoryTable';
+import medLogsData from '../../../helpers/data/medLogsData';
 
 class MedHistory extends React.Component {
     state = {
