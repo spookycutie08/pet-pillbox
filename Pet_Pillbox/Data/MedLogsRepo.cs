@@ -80,10 +80,12 @@ namespace Pet_Pillbox.Data
         {
             var sql = @"INSERT INTO [dbo].[MedLogs]
                                ([MedicationId]
-                                ,[AdminDateTime])
+                                ,[AdminDateTime]
+                                ,[DoseAmount]
+                                ,[DoseTypeId])
                         Output inserted.Id
                         VALUES
-                               (@medicationId,@adminDateTime)";
+                               (@medicationId,@adminDateTime,@doseAmount,@doseTypeId)";
 
             using var db = new SqlConnection(_connectionString);
 
