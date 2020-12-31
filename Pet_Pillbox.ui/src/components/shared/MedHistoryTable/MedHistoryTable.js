@@ -7,7 +7,6 @@ import doseTypesData from '../../../helpers/data/doseTypesData';
 
 class MedListTable extends React.Component {
     state = {
-        log: [],
         doseDecription: ''
     }
 
@@ -16,7 +15,7 @@ class MedListTable extends React.Component {
         const adminDateFormatted = Moment(log.adminDateTime).format('MM/DD/YYYY hh:mm a');
         const getDoseDescription = (typeId) => {
             doseTypesData.getSingleDoseType(typeId)
-            .then((doseInfo) => this.setState({ doseDecription : doseInfo.descrition }));
+            .then((doseInfo) => this.setState({ doseDecription : doseInfo.description }));
         };
         getDoseDescription(log.doseTypeId);
         if (log) {
