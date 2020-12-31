@@ -44,7 +44,7 @@ class MedListTable extends React.Component {
                     <td>{med.doseAmount} {this.state.doseType}</td>
                     <td>{medFreq(med.hoursBetweenDoses)}</td>
                     <td>{medEndDate}</td>
-                    <td><Link to={historyLink}><i className="fas fa-notes-medical"></i></Link></td>
+                    <td><Link to={historyLink}><i className="fas fa-notes-medical font-olive"></i></Link></td>
                 </tr>
             )
 

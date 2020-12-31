@@ -42,7 +42,7 @@ class SingleMedDue extends React.Component {
             return (
                 <div>
                     <p>{med.name}</p>
-                    <button onClick={this.medLogEvent} value={med.id} className="btn btn-warning"><i className="fas fa-check"></i></button>
+                    <button onClick={this.medLogEvent} value={med.id} className="btn btn-custom"><i className="fas fa-check"></i></button>
                 </div>
             );
         }
