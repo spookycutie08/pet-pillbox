@@ -10,5 +10,7 @@ namespace Pet_Pillbox.Models
         public int Id { get; set; }
         public int MedicationId { get; set; }
         public DateTime AdminDateTime { get; set; }
+        public decimal DoseAmount { get; set; }
+        public int DoseTypeId { get; set; }
     }
 }

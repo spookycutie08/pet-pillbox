@@ -1,19 +1,28 @@
 import Moment from 'moment';
 import React from 'react';
 
+import medListData from '../../../helpers/data/medListData';
 import medLogsData from '../../../helpers/data/medLogsData';
 
 class SingleMedDue extends React.Component {
     state = {
         isDisabled: false,
+        medInfo: {}
     }
+
+    componentDidMount = () => {
+        const medId = this.props.med.id;
+        medListData.getSingleMedByMedId(medId)
+        .then((medInfo) => this.setState({ medInfo }));
+    };
 
     medLogEvent = (e) => {
         e.preventDefault();
-        const medId = e.target.value;
         const newLog = {
-            medicationId: medId * 1,
+            medicationId: this.state.medInfo.id,
             adminDateTime: Moment().format(),
+            doseAmount: this.state.medInfo.doseAmount,
+            doseTypeId: this.state.medInfo.doseTypeId,
         }
         medLogsData.addNewLog(newLog)
         .then(this.setState({ isDisabled: true }))
@@ -33,7 +42,7 @@ class SingleMedDue extends React.Component {
             return (
                 <div>
                     <p>{med.name}</p>
-                    <button onClick={this.medLogEvent} value={med.id} className="btn btn-warning"><i class="fas fa-check"></i></button>
+                    <button onClick={this.medLogEvent} value={med.id} className="btn btn-warning"><i className="fas fa-check"></i></button>
                 </div>
             );
         }
