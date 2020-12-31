@@ -40,6 +40,9 @@ class NavNavbar extends React.Component {
                         <NavItem>
                             <NavLink tag={RRNavLink} to='/pets'>Pets</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={RRNavLink} to='/addMed/2029'>Test</NavLink>
+                        </NavItem>
                         {showLogout()}
                         </div>
                 </Nav>

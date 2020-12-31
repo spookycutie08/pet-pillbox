@@ -1,5 +1,7 @@
 import './AddMedForm.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
+import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 import React from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
@@ -15,9 +17,7 @@ class AddMedForm extends React.Component {
         doseTypeId: 10,
         medFreqNum: 0,
         medFreqUnit: 1,
-        medStartMonth: 1,
-        medStartDay: 1,
-        medStartYear: 1999,
+        endDate: '',
         petId: this.props.match.params.petId,
     }
 
@@ -44,21 +44,23 @@ class AddMedForm extends React.Component {
             doseTypeId: idOfDoseType,
             doseAmount: numOfDoseAmount,
             startDate: Moment().format('YYYY-MM-DD'),
-            endDate: `${this.state.medStartYear}-${this.state.medStartMonth}-${this.state.medStartDay}`
-        }
-        console.log('obj; ', newMedObject);
-        
+            endDate: Moment(this.state.endDate).format('YYYY-MM-DD')
+        }        
         medListData.addNewMed(newMedObject)
         .then(() => this.props.history.push(`/medlist/${this.state.petId}`))
         .catch((err) => console.error('could not post new med:', err))
      };
 
-    updateForm = (e) => {
+    updateName = (e) => {
         e.preventDefault();
         var newState = {};
         newState[e.target.name] = e.target.value;
         this.setState(newState);
     };
+
+    endDateChange = (date) => {
+        this.setState({ endDate: date });
+    }
 
     render() {
         return (
@@ -66,7 +68,7 @@ class AddMedForm extends React.Component {
                 <Form>
                     <FormGroup>
                         <Label for="name">Medication Name</Label>
-                        <Input type="text" name="name" id="name" onChange={this.updateForm}/>
+                        <Input type="text" name="name" id="name" onChange={this.updateName}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="doseAmount">Amount</Label>
@@ -94,22 +96,11 @@ class AddMedForm extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for="medEndDate">Until...</Label>
-                        <Input type="select" name="medStartMonth" id="medStartMonth" onChange={this.updateForm}>
-                            <option value="01">Jan</option>
-                            <option value="02">Feb</option>
-                            <option value="03">Mar</option>
-                            <option value="04">Apr</option>
-                            <option value="05">May</option>
-                            <option value="06">Jun</option>
-                            <option value="07">Jul</option>
-                            <option value="08">Aug</option>
-                            <option value="09">Sep</option>
-                            <option value="10">Oct</option>
-                            <option value="11">Nov</option>
-                            <option value="12">Dec</option>
-                        </Input>
-                        <Input type="number" name="medStartDay" id="medStartDay" min="1" max="31" step="1" onChange={this.updateForm}/>
-                        <Input type="number" name="medStartYear" id="medStartYear" min="2020" max="2099" step="1" onChange={this.updateForm}/>
+                        <DatePicker 
+                        selected={this.state.endDate}
+                        onChange={this.endDateChange}
+                        dateFormat={'yyyy-MM-dd'}
+                        />
                     </FormGroup>
                     <button className="btn btn-success" onClick={this.saveNewMed}>Save</button>
                 </Form>
