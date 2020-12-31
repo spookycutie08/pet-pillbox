@@ -7,8 +7,8 @@ const getPetsByUser = (uid) => new Promise((resolve, reject) => {
         .catch(error => reject(error));
 });
 
-const addNewPet = (newPet) => {
-    axios.post(`${baseUrl}/pets`, newPet)
+const addNewPet = (newPet, resolve) => {
+    axios.post(`${baseUrl}/pets`, newPet).then(resolve);
 };
 
 const getSinglePetById = (petId) => new Promise((resolve, reject) => {

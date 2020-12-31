@@ -11,56 +11,45 @@ class PetsDashboard extends React.Component {
     state = {
         pets: [],
         isOpen: false,
-
-        uid: authData.getUid(),
         petName: '',
         user: {},
     };
 
     toggle = () => {
         this.setState({ isOpen: !this.state.isOpen });
-        authData.getUserByUid(this.state.uid)
-        .then((response) =>{
-            this.setState({ user: response});
-        });
-        
     }
 
     getPetsForDashboard = () => {
-        const userUid = authData.getUid();
+        const userUid = this.state.user.firebaseUid;
         petsData.getPetsByUser(userUid)
             .then(pets => { this.setState({ pets }) });
     };
 
     componentDidMount() {
-        this.getPetsForDashboard();
-    }
-
-    componentDidUpdate(prevState) {
-        if (prevState.pets !== this.state.pets) {
+        const uid = authData.getUid();
+        authData.getUserByUid(uid)
+        .then((response) =>{
+            this.setState({ user: response});
             this.getPetsForDashboard();
-        }
-      }
+        });
+    }
 
     nameChange = (e) => {
         e.preventDefault();
         this.setState({ petName: e.target.value });
     }
 
-    savePet = (e) => {
-        e.preventDefault();
+    savePet = () => {
         const newPet = {
             name: this.state.petName,
             userId: this.state.user.id,
         }
-        petsData.addNewPet(newPet)
+        petsData.addNewPet(newPet, () => this.getPetsForDashboard())        
         this.toggle();
-        
     };
 
     render() {
         const { pets, isOpen, petName } = this.state;
-
         const buildPetsList = pets.map((p) => {
             return (<SinglePet key={p.id} pet={p} />)
         });
