@@ -52,7 +52,6 @@ class MedList extends React.Component {
                             <th scope="col">End Date</th>
                             <th scope="col">View History</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         {buildMedsTable}
