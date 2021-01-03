@@ -39,7 +39,7 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Due Today</h1>
-                <table className="table custom-table">
+                <table className="table custom-table center-align">
                     {buildPetsToday}
                 </table>
             </div>

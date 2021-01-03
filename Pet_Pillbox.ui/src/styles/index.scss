@@ -39,9 +39,17 @@ a:hover {
 
 .custom-table {
   background-color: $pale;
-  th {
-    color: $cerulean;
+  td {
+    vertical-align: middle;
   }
+  th {
+    background-color: $sky;
+    vertical-align: middle;
+  }
+}
+
+.center-align {
+  text-align: left;
 }
 
 .font-olive {

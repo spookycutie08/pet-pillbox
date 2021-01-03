@@ -57,7 +57,9 @@ class PetsDashboard extends React.Component {
         return (
             <div className="PetsDashboard col-12">
                 <h1>Pets</h1>
-                {buildPetsList}
+                <table className="table custom-table">
+                    <tbody>{buildPetsList}</tbody>
+                </table>
                 <br/>
                 <button className='btn btn-custom' onClick={this.toggle}>Add New Pet</button>
                 <Collapse isOpen={isOpen} className='col-3 collapse-form'>

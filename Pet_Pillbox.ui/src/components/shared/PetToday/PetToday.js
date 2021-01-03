@@ -32,7 +32,7 @@ class PetToday extends React.Component {
             <>
                 <thead>
                     <tr>
-                        <th colspan="1">{pet.name}</th>
+                        <th colspan="2">{pet.name}</th>
                     </tr>
                 </thead>
                 <tbody>
