@@ -49,7 +49,7 @@ class NavNavbar extends React.Component {
                                 <NavLink tag={RRNavLink} to='/pets' onClick={this.toggle}>Pets</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRNavLink} to='/addMed/2029'  onClick={this.toggle}>Test</NavLink>
+                                <NavLink tag={RRNavLink} to='/medlist/pet/1'  onClick={this.toggle}>Test</NavLink>
                             </NavItem>
                             {showLogout()}
                         </Nav>

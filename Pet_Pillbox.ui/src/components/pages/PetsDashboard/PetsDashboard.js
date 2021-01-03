@@ -57,7 +57,7 @@ class PetsDashboard extends React.Component {
         return (
             <div className="PetsDashboard col-12">
                 <h1>Pets</h1>
-                <table className="table custom-table">
+                <table className="table table-custom">
                     <tbody>{buildPetsList}</tbody>
                 </table>
                 <br/>

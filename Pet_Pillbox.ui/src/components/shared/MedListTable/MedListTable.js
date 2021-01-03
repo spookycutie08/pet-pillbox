@@ -39,13 +39,15 @@ class MedListTable extends React.Component {
         const historyLink = `/history/${med.id}`
         if (med) {
             return (
+                <>
                 <tr>
                     <td>{med.name}</td>
-                    <td>{med.doseAmount} {this.state.doseType}</td>
-                    <td>{medFreq(med.hoursBetweenDoses)}</td>
-                    <td>{medEndDate}</td>
-                    <td><Link to={historyLink}><i className="fas fa-notes-medical font-olive"></i></Link></td>
+                    <td rowspan="2"><Link to={historyLink}><i className="fas fa-notes-medical font-olive"></i></Link></td>
+                </tr><tr>
+                    <td className="font-small-custom">{med.doseAmount} {this.state.doseType} every {medFreq(med.hoursBetweenDoses)}
+                    <br/> exp: {medEndDate}</td>
                 </tr>
+                </>
             )
 
         } else {
