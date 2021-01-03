@@ -4,17 +4,26 @@ import firebase from 'firebase'
 
 import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
-import { Nav, NavbarBrand, NavItem, NavLink } from 'reactstrap'
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap'
 
 
 class NavNavbar extends React.Component {
+    state = {
+        isOpen: false,
+    }
 
     logoutEvent = (e) => {
         e.preventDefault();
         firebase.auth().signOut();
-      }
+    }
+
+    toggle = () => {
+        this.setState({ isOpen: !this.state.isOpen });
+    }
 
     render() {
+        const { isOpen } = this.state;
+
         const showLogout = () => {
             const { authed } = this.props;
             if (authed) {
@@ -28,11 +37,31 @@ class NavNavbar extends React.Component {
 
         return (
             <div className="NavNavbar">
-                <Nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                <Navbar className="navbar-custom" expand="sm">
+                    <NavbarToggler className="toggler-custom navbar-dark" onClick={this.toggle} />
+                    <NavbarBrand href="/">Pet Pillbox</NavbarBrand>
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="mr-auto" navbar>
+                            <NavItem>
+                                <NavLink tag={RRNavLink} to='/home' onClick={this.toggle}>Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={RRNavLink} to='/pets' onClick={this.toggle}>Pets</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={RRNavLink} to='/addMed/2029'  onClick={this.toggle}>Test</NavLink>
+                            </NavItem>
+                            {showLogout()}
+                        </Nav>
+
+                    </Collapse>
+                </Navbar>
+
+                {/* <Navbar className="navbar-custom">
+                    <NavbarToggler className="font-pale" onClick={this.toggle} />
                     <NavbarBrand>Pet Pillbox</NavbarBrand>
+                    <Collapse isOpen={isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
                     <div className="collapse navbar-collapse">
                         <NavItem>
                             <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
@@ -45,7 +74,9 @@ class NavNavbar extends React.Component {
                         </NavItem>
                         {showLogout()}
                         </div>
-                </Nav>
+                        </Nav>
+                        </Collapse>
+                </Navbar> */}
             </div>
         );
     }

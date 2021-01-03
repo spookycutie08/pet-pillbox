@@ -41,9 +41,9 @@ class MedList extends React.Component {
             <div>
                 <h1>{pet.name}'s Current Medications</h1>
 
-                <Link className='btn btn-primary' to={addMedLink}>Add Medication</Link>
+                <Link className='btn btn-custom' to={addMedLink}>Add Medication</Link>
 
-                <table className="table">
+                <table className="table custom-table">
                     <thead>
                         <tr>
                             <th scope="col">Medication</th>
@@ -52,7 +52,6 @@ class MedList extends React.Component {
                             <th scope="col">End Date</th>
                             <th scope="col">View History</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         {buildMedsTable}

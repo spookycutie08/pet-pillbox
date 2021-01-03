@@ -29,10 +29,16 @@ class PetToday extends React.Component {
             return (<SingleMedDue key={med.id} med={med}/>)
         });
         return (
-            <div>
-                <h3>{pet.name}</h3>
-                {buildMedsDue}
-            </div>
+            <>
+                <thead>
+                    <tr>
+                        <th colspan="2">{pet.name}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {buildMedsDue}
+                </tbody>
+            </>
         );
     }
 }

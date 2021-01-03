@@ -1,6 +1,9 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'variables';
 
 body {
+  background-color: $green_tea;
+  color: $charcoal;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -9,7 +12,70 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a:hover {
+  text-decoration: none;
+}
+
+.btn-custom {
+  background-color: $pale;
+  color: $salmon;
+}
+
+.btn:hover {
+  background-color: $sky;
+  color: $olive;
+}
+
+.navbar {
+  background-color: $olive;
+  a {
+    color: $pale;
+  }
+  a:hover {
+    color: $sky;
+    text-decoration: none;
+  }
+}
+
+.custom-table {
+  background-color: $pale;
+  td {
+    vertical-align: middle;
+  }
+  th {
+    background-color: $sky;
+    vertical-align: middle;
+  }
+}
+
+.center-align {
+  text-align: left;
+}
+
+.font-olive {
+  color: $olive;
+}
+
+.font-moss {
+  color: $moss;
+}
+
+.font-pale {
+  color: $pale;
+}
+
+.font-sky {
+  color: $sky;
+}
+
+.font-cerulean {
+  color: $cerulean;
+}
+
+.font-charcoal {
+  color: $charcoal;
+}
+
+.font-salmon {
+  color: $salmon;
 }

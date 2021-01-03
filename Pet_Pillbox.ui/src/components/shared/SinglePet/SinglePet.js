@@ -7,9 +7,11 @@ class SinglePet extends React.Component {
         const { pet } = this.props;
         const linkPath = `/medlist/pet/${pet.id}`;
         return (
-            <div>
-                <Link to={linkPath}>{pet.name}</Link>
-            </div>
+            <>
+            <tr>
+                <td><Link to={linkPath}>{pet.name}</Link></td>
+            </tr>
+            </>
         );
     }
 }

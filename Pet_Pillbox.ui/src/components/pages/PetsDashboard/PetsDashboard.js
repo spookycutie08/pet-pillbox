@@ -57,13 +57,15 @@ class PetsDashboard extends React.Component {
         return (
             <div className="PetsDashboard col-12">
                 <h1>Pets</h1>
-                {buildPetsList}
+                <table className="table custom-table">
+                    <tbody>{buildPetsList}</tbody>
+                </table>
                 <br/>
-                <button className='btn btn-primary' onClick={this.toggle}>Add New Pet</button>
+                <button className='btn btn-custom' onClick={this.toggle}>Add New Pet</button>
                 <Collapse isOpen={isOpen} className='col-3 collapse-form'>
                     <label htmlFor="petName">New Pet Name</label>
                     <input type="text" value={petName} onChange={this.nameChange} className="form-control" id="petName" aria-describedby="inputPetName" />
-                    <button className="btn btn-success" type="submit" onClick={this.savePet}>Submit</button>
+                    <button className="btn btn-custom" type="submit" onClick={this.savePet}>Submit</button>
                 </Collapse>
             </div>
         );
