@@ -43,14 +43,11 @@ class MedList extends React.Component {
 
                 <Link className='btn btn-custom' to={addMedLink}>Add Medication</Link>
 
-                <table className="table custom-table">
+                <table className="table table-custom table-borderless" id="medlist-table">
                     <thead>
                         <tr>
                             <th scope="col">Medication</th>
-                            <th scope="col">Dose</th>
-                            <th scope="col">Every</th>
-                            <th scope="col">End Date</th>
-                            <th scope="col">View History</th>
+                            <th scope="col">History</th>
                         </tr>
                     </thead>
                     <tbody>

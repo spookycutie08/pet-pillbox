@@ -1,6 +1,7 @@
 import Moment from 'moment';
 import React from 'react';
 
+import doseTypesData from '../../../helpers/data/doseTypesData';
 import medListData from '../../../helpers/data/medListData';
 import medLogsData from '../../../helpers/data/medLogsData';
 
@@ -13,7 +14,16 @@ class SingleMedDue extends React.Component {
     componentDidMount = () => {
         const medId = this.props.med.id;
         medListData.getSingleMedByMedId(medId)
-        .then((medInfo) => this.setState({ medInfo }));
+            .then((medInfo) => {
+                this.setState({ medInfo });
+                this.getDoseDescription(medInfo.doseTypeId);
+            });
+    };
+
+    getDoseDescription = () => {
+        const doseId = this.state.medInfo.doseTypeId;
+        doseTypesData.getSingleDoseType(doseId)
+        .then((doseInfo) => this.setState({ doseDesc : doseInfo.description}))
     };
 
     medLogEvent = (e) => {
@@ -25,13 +35,14 @@ class SingleMedDue extends React.Component {
             doseTypeId: this.state.medInfo.doseTypeId,
         }
         medLogsData.addNewLog(newLog)
-        .then(this.setState({ isDisabled: true }))
+            .then(this.setState({ isDisabled: true }))
         console.log('logged: ', newLog);
     };
 
     render() {
         const { med } = this.props;
-
+        const medInfo = this.state.medInfo;
+        const doseDesc = this.state.doseDesc;
         if (this.state.isDisabled) {
             return (
                 <div>
@@ -43,6 +54,7 @@ class SingleMedDue extends React.Component {
                 <>
                     <tr>
                         <td>{med.name}</td>
+                        <td className="font-small-custom">{medInfo.doseAmount} {doseDesc}</td>
                         <td><button onClick={this.medLogEvent} value={med.id} className="btn btn-custom"><i className="fas fa-check"></i></button></td>
                     </tr>
                 </>

@@ -21,6 +21,10 @@ class NavNavbar extends React.Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
+    closeToggle = () => {
+        this.setState({ isOpen: false });
+    }
+
     render() {
         const { isOpen } = this.state;
 
@@ -43,13 +47,13 @@ class NavNavbar extends React.Component {
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink tag={RRNavLink} to='/home' onClick={this.toggle}>Home</NavLink>
+                                <NavLink tag={RRNavLink} to='/home' onClick={this.closeToggle}>Home</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={RRNavLink} to='/pets' onClick={this.toggle}>Pets</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRNavLink} to='/addMed/2029'  onClick={this.toggle}>Test</NavLink>
+                                <NavLink tag={RRNavLink} to='/medlist/pet/1'  onClick={this.toggle}>Test</NavLink>
                             </NavItem>
                             {showLogout()}
                         </Nav>
