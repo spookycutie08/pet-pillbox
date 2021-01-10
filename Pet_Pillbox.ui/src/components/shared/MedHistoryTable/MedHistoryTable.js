@@ -10,14 +10,19 @@ class MedListTable extends React.Component {
         doseDecription: ''
     }
 
+    getDoseDescription = (typeId) => {
+        doseTypesData.getSingleDoseType(typeId)
+        .then((doseInfo) => this.setState({ doseDecription : doseInfo.description }));
+    };
+
+    componentDidMount = () => {
+        const { log } = this.props;
+        this.getDoseDescription(log.doseTypeId);
+    };
+
     render() {
         const { log } = this.props;
         const adminDateFormatted = Moment(log.adminDateTime).format('MM/DD/YYYY hh:mm a');
-        const getDoseDescription = (typeId) => {
-            doseTypesData.getSingleDoseType(typeId)
-            .then((doseInfo) => this.setState({ doseDecription : doseInfo.description }));
-        };
-        getDoseDescription(log.doseTypeId);
         if (log) {
             return (
                 <tr>
