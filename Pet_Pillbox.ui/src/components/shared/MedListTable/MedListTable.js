@@ -3,7 +3,7 @@ import './MedListTable.scss'
 import React from 'react';
 
 import doseTypesData from '../../../helpers/data/doseTypesData';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Moment from 'moment';
 
 class MedListTable extends React.Component {
@@ -45,7 +45,7 @@ class MedListTable extends React.Component {
                 return hours + " hour(s)";
             }
         };
-        //const historyLink = `/history/${med.id}`
+        const historyLink = `/history/${med.id}`
         if (med) {
             return (
                 <>
@@ -53,18 +53,14 @@ class MedListTable extends React.Component {
                         <td className="text-left">{med.name}</td>
                         <td className="text-right"><button className="btn btn-block bg-transparent" onClick={this.toggle} block><i class="fas fa-chevron-down"></i></button></td>
                     </tr>
-                    {/* <div className={this.state.collapseState}> */}
-                        <tr className={`font-small-custom ${this.state.collapseState}`}>
-                            <td>{med.doseAmount} {this.state.doseType} every {medFreq(med.hoursBetweenDoses)}</td>
-                            <td>exp: {medEndDate}</td>
-                        </tr>
-                        <tr className={`font-small-custom ${this.state.collapseState}`}>
-                            <td colspan="2">View History</td>
-                        </tr>
-                        <tr className={`font-small-custom ${this.state.collapseState}`}>
-                            <td colspan="2">number four</td>
-                        </tr>
-                    {/* </div> */}
+                    <tr className={`font-small-custom font-olive ${this.state.collapseState}`}>
+                        <td>{med.doseAmount} {this.state.doseType} every {medFreq(med.hoursBetweenDoses)}</td>
+                        <td>exp: {medEndDate}</td>
+                    </tr>
+                    <tr className={`font-small-custom ${this.state.collapseState}`}>
+                        <td><Link className="font-cerulean" to={historyLink}>View History</Link></td>
+                        <td><Link className="font-salmon" to={historyLink}>Edit</Link></td>
+                    </tr>
                 </>
             )
 
