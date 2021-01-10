@@ -1,8 +1,15 @@
+@import '../../../styles/variables';
+
 .MedListTable {
     display: block;
 }
 
 .font-small-custom {
     font-size: 75%;
-    color: gray
+    color: gray;
+    text-align: left;
+}
+
+button {
+    border: none;
 }

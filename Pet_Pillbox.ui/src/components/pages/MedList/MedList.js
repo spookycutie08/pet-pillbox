@@ -41,13 +41,12 @@ class MedList extends React.Component {
             <div>
                 <h1>{pet.name}'s Current Medications</h1>
 
-                <Link className='btn btn-custom' to={addMedLink}>Add Medication</Link>
+                <Link className='btn btn-custom' to={addMedLink}><i class="fas fa-plus"></i> Add New</Link>
 
                 <table className="table table-custom table-borderless" id="medlist-table">
-                    <thead>
+                    <thead className="text-left">
                         <tr>
-                            <th scope="col">Medication</th>
-                            <th scope="col">History</th>
+                            <th colspan="2">Medication</th>
                         </tr>
                     </thead>
                     <tbody>
