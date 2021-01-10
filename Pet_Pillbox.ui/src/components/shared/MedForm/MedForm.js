@@ -1,4 +1,4 @@
-import './AddMedForm.scss';
+import './MedForm.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import DatePicker from 'react-datepicker';
@@ -9,7 +9,7 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import doseTypesData from '../../../helpers/data/doseTypesData'
 import medListData from '../../../helpers/data/medListData'
 
-class AddMedForm extends React.Component {
+class MedForm extends React.Component {
     state = {
         doseTypes: [],
         name: '',
@@ -69,7 +69,7 @@ class AddMedForm extends React.Component {
                 <Form>
                     <FormGroup>
                         <Label for="name">Medication Name</Label>
-                        <Input type="text" name="name" id="name" onChange={this.updateName}/>
+                        <Input type="text" name="name" id="name" value={this.state.name} onChange={this.updateName}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="doseAmount">Amount</Label>
@@ -110,4 +110,4 @@ class AddMedForm extends React.Component {
     }
 }
 
-export default AddMedForm;
+export default MedForm;

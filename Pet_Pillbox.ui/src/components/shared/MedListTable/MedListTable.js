@@ -31,6 +31,8 @@ class MedListTable extends React.Component {
 
     render() {
         const { med } = this.props;
+        const historyLink = `/history/${med.id}`;
+        const editLink = `/editMed/${med.id}`;
         const medEndDate = Moment(med.endDate).format('MM/DD/YYYY');
         const medFreq = (hours) => {
             if (hours <= 23.9) {
@@ -45,13 +47,13 @@ class MedListTable extends React.Component {
                 return hours + " hour(s)";
             }
         };
-        const historyLink = `/history/${med.id}`
+
         if (med) {
             return (
                 <>
                     <tr>
                         <td className="text-left">{med.name}</td>
-                        <td className="text-right"><button className="btn btn-block bg-transparent" onClick={this.toggle} block><i class="fas fa-chevron-down"></i></button></td>
+                        <td className="text-right"><button className="btn btn-block bg-transparent shadow-none" onClick={this.toggle} block><i class="fas fa-chevron-down"></i></button></td>
                     </tr>
                     <tr className={`font-small-custom font-olive ${this.state.collapseState}`}>
                         <td>{med.doseAmount} {this.state.doseType} every {medFreq(med.hoursBetweenDoses)}</td>
@@ -59,7 +61,7 @@ class MedListTable extends React.Component {
                     </tr>
                     <tr className={`font-small-custom ${this.state.collapseState}`}>
                         <td><Link className="font-cerulean" to={historyLink}>View History</Link></td>
-                        <td><Link className="font-salmon" to={historyLink}>Edit Details</Link></td>
+                        <td><Link className="font-salmon" to={editLink}>Edit Details</Link></td>
                     </tr>
                 </>
             )
