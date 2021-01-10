@@ -64,7 +64,8 @@ class AddMedForm extends React.Component {
 
     render() {
         return (
-            <div className="col-6">
+            <div className="col-12">
+                <h1>New Medication</h1>
                 <Form>
                     <FormGroup>
                         <Label for="name">Medication Name</Label>
@@ -95,7 +96,7 @@ class AddMedForm extends React.Component {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="medEndDate">Until...</Label>
+                        <Label for="medEndDate">Until...</Label><br/>
                         <DatePicker 
                         selected={this.state.endDate}
                         onChange={this.endDateChange}

@@ -39,10 +39,12 @@ a:hover {
   background-color: $pale;
   td {
     vertical-align: middle;
+    text-align: left;
   }
   th {
     background-color: $sky;
     vertical-align: middle;
+    text-align: center;
   }
 }
 

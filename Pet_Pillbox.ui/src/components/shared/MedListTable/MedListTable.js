@@ -59,7 +59,7 @@ class MedListTable extends React.Component {
                     </tr>
                     <tr className={`font-small-custom ${this.state.collapseState}`}>
                         <td><Link className="font-cerulean" to={historyLink}>View History</Link></td>
-                        <td><Link className="font-salmon" to={historyLink}>Edit</Link></td>
+                        <td><Link className="font-salmon" to={historyLink}>Edit Details</Link></td>
                     </tr>
                 </>
             )
