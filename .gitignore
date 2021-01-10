@@ -5,6 +5,7 @@ Pet_Pillbox/Properties/serviceDependencies.petpillbox - Web Deploy.json
 Pet_Pillbox.ui/.gitignore
 Pet_Pillbox.ui/build/
 Pet_Pillbox.ui/firebase.json
+Pet_Pillbox/appsettings.json
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,firebase,csharp,aspnetcore,sass,visualstudio,visualstudiocode
