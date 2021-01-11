@@ -44,7 +44,7 @@ class MedList extends React.Component {
                 <table className="table table-custom table-borderless" id="medlist-table">
                     <thead className="text-left">
                         <tr>
-                            <th colspan="2">Current Medications</th>
+                            <th colSpan="2">Current Medications</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@ class MedList extends React.Component {
                     </tbody>
                 </table>
 
-                <Link className='btn btn-custom' to={addMedLink}><i class="fas fa-plus"></i> Add New</Link>
+                <Link className='btn btn-custom' to={addMedLink}><i className="fas fa-plus"></i> Add New</Link>
 
             </div>
         );

@@ -62,6 +62,13 @@ class MedForm extends React.Component {
         this.setState({ endDate: date });
     }
 
+    updateForm = (e) => {
+        e.preventDefault();
+        var newState = {};
+        newState[e.target.name] = e.target.value;
+        this.setState(newState);
+    };
+
     render() {
         return (
             <div className="col-12">
@@ -73,7 +80,7 @@ class MedForm extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for="doseAmount">Amount</Label>
-                        <Input type="number" name="doseAmount" id="doseAmount" min="0.25" max="9999" step="0.25" onChange={this.updateForm}>
+                        <Input type="number" name="doseAmount" id="doseAmount" min="1" max="9999" step="1" onChange={this.updateForm}>
                         </Input>
                     </FormGroup>
                     <FormGroup>
