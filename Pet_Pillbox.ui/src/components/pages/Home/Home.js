@@ -39,6 +39,7 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Due Today</h1>
+                <p>Click the pill icon when complete</p>
                 <table className="table table-custom center-align">
                     {buildPetsToday}
                 </table>
