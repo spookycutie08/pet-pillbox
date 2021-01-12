@@ -1,5 +1,5 @@
 {
-    "baseUrl" : "http://localhost:44307/api",
+    "baseUrl" : "https://petpillbox.azurewebsites.net/api",
     "firebaseConfig" : {
     "apiKey" : "AIzaSyCHTCE9Dt6JUofRp8_UP17oC-ZIxgbKG7Y",
     "authDomain": "pet-pillbox-app.firebaseapp.com",
