@@ -49,7 +49,7 @@ class SingleMedDue extends React.Component {
                 <tr>
                     <td>{med.name}</td>
                     <td className="font-small-custom">{medInfo.doseAmount} {doseDesc}</td>
-                    <td><button onClick={this.medLogEvent} value={med.id} className="btn btn-custom"><i className="fas fa-check"></i></button></td>
+                    <td><button value={med.id} className="btn btn-custom disabled font-olive"><i className="fas fa-check"></i></button></td>
                 </tr>
                 </>
             )
@@ -59,7 +59,7 @@ class SingleMedDue extends React.Component {
                     <tr>
                         <td>{med.name}</td>
                         <td className="font-small-custom">{medInfo.doseAmount} {doseDesc}</td>
-                        <td><button className="btn btn-custom disabled font-olive"><i className="fas fa-pills"></i></button></td>
+                        <td><button className="btn btn-custom" onClick={this.medLogEvent}><i className="fas fa-pills"></i></button></td>
                     </tr>
                 </>
             );
