@@ -45,9 +45,13 @@ class SingleMedDue extends React.Component {
         const doseDesc = this.state.doseDesc;
         if (this.state.isDisabled) {
             return (
-                <div>
-                    <p>{med.name}</p>
-                </div>
+                <>
+                <tr>
+                    <td>{med.name}</td>
+                    <td className="font-small-custom">{medInfo.doseAmount} {doseDesc}</td>
+                    <td><button onClick={this.medLogEvent} value={med.id} className="btn btn-custom"><i className="fas fa-check"></i></button></td>
+                </tr>
+                </>
             )
         } else {
             return (
@@ -55,7 +59,7 @@ class SingleMedDue extends React.Component {
                     <tr>
                         <td>{med.name}</td>
                         <td className="font-small-custom">{medInfo.doseAmount} {doseDesc}</td>
-                        <td><button onClick={this.medLogEvent} value={med.id} className="btn btn-custom"><i className="fas fa-check"></i></button></td>
+                        <td><button className="btn btn-custom disabled font-olive"><i className="fas fa-pills"></i></button></td>
                     </tr>
                 </>
             );

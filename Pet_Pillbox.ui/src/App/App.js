@@ -9,12 +9,13 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 import NavNavbar from '../components/shared/NavNavbar/NavNavbar'
 
-import AddMedForm from '../components/pages/AddMedForm/AddMedForm';
-import Auth from '../components/shared/Auth/Auth'
-import Home from '../components/pages/Home/Home'
-import MedHistory from '../components/pages/MedHistory/MedHistory'
-import MedList from '../components/pages/MedList/MedList'
-import PetsDashboard from '../components/pages/PetsDashboard/PetsDashboard'
+import Auth from '../components/shared/Auth/Auth';
+import EditMed from '../components/pages/EditMed/EditMed';
+import Home from '../components/pages/Home/Home';
+import MedForm from '../components/shared/MedForm/MedForm';
+import MedHistory from '../components/pages/MedHistory/MedHistory';
+import MedList from '../components/pages/MedList/MedList';
+import PetsDashboard from '../components/pages/PetsDashboard/PetsDashboard';
 
 
 fbConnection();
@@ -65,8 +66,9 @@ class App extends React.Component {
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
 
                 <PrivateRoute path="/home" component={Home} authed={authed} />
-                <PrivateRoute path="/addMed/:petId" component={AddMedForm} authed={authed} />
+                <PrivateRoute path="/addMed/:petId" component={MedForm} authed={authed} />
                 <PrivateRoute path="/medlist/pet/:petId" component={MedList} authed={authed} />
+                {/* <PrivateRoute path="/editMed/:medId" component={EditMed} authed={authed} /> */}
                 <PrivateRoute path="/history/:medId" component={MedHistory} authed={authed} />
                 <PrivateRoute path="/pets" component={PetsDashboard} authed={authed} />
 

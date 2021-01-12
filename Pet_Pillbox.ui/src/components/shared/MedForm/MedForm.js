@@ -1,4 +1,4 @@
-import './AddMedForm.scss';
+import './MedForm.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import DatePicker from 'react-datepicker';
@@ -9,7 +9,7 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import doseTypesData from '../../../helpers/data/doseTypesData'
 import medListData from '../../../helpers/data/medListData'
 
-class AddMedForm extends React.Component {
+class MedForm extends React.Component {
     state = {
         doseTypes: [],
         name: '',
@@ -62,17 +62,25 @@ class AddMedForm extends React.Component {
         this.setState({ endDate: date });
     }
 
+    updateForm = (e) => {
+        e.preventDefault();
+        var newState = {};
+        newState[e.target.name] = e.target.value;
+        this.setState(newState);
+    };
+
     render() {
         return (
-            <div className="col-6">
+            <div className="col-12">
+                <h1>New Medication</h1>
                 <Form>
                     <FormGroup>
                         <Label for="name">Medication Name</Label>
-                        <Input type="text" name="name" id="name" onChange={this.updateName}/>
+                        <Input type="text" name="name" id="name" value={this.state.name} onChange={this.updateName}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="doseAmount">Amount</Label>
-                        <Input type="number" name="doseAmount" id="doseAmount" min="0.25" max="9999" step="0.25" onChange={this.updateForm}>
+                        <Input type="number" name="doseAmount" id="doseAmount" min="1" max="9999" step="1" onChange={this.updateForm}>
                         </Input>
                     </FormGroup>
                     <FormGroup>
@@ -95,7 +103,7 @@ class AddMedForm extends React.Component {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="medEndDate">Until...</Label>
+                        <Label for="medEndDate">Until...</Label><br/>
                         <DatePicker 
                         selected={this.state.endDate}
                         onChange={this.endDateChange}
@@ -109,4 +117,4 @@ class AddMedForm extends React.Component {
     }
 }
 
-export default AddMedForm;
+export default MedForm;

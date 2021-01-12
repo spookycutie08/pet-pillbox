@@ -39,21 +39,21 @@ class MedList extends React.Component {
         const addMedLink = `/addMed/${pet.id}`;
         return (
             <div>
-                <h1>{pet.name}'s Current Medications</h1>
-
-                <Link className='btn btn-custom' to={addMedLink}>Add Medication</Link>
+                <h1>{pet.name}</h1>
 
                 <table className="table table-custom table-borderless" id="medlist-table">
-                    <thead>
+                    <thead className="text-left">
                         <tr>
-                            <th scope="col">Medication</th>
-                            <th scope="col">History</th>
+                            <th colSpan="2">Current Medications</th>
                         </tr>
                     </thead>
                     <tbody>
                         {buildMedsTable}
                     </tbody>
                 </table>
+
+                <Link className='btn btn-custom' to={addMedLink}><i className="fas fa-plus"></i> Add New</Link>
+
             </div>
         );
     }
