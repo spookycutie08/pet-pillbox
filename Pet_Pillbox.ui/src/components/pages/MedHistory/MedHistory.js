@@ -37,7 +37,7 @@ class MedHistory extends React.Component {
         return (
             <div>
                 <h1>{medInfo.name}</h1>
-                <table className="table">
+                <table className="table table-custom table-borderless">
                     <thead>
                         <tr>
                         <th>Dose Amount</th>

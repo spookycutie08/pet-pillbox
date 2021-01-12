@@ -43,7 +43,7 @@ class NavNavbar extends React.Component {
             <div className="NavNavbar">
                 <Navbar className="navbar-custom" expand="sm">
                     <NavbarToggler className="toggler-custom navbar-dark" onClick={this.toggle} />
-                    <NavbarBrand href="/">Pet Pillbox</NavbarBrand>
+                    <NavbarBrand>Pet Pillbox</NavbarBrand>
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
@@ -52,9 +52,9 @@ class NavNavbar extends React.Component {
                             <NavItem>
                                 <NavLink tag={RRNavLink} to='/pets' onClick={this.toggle}>Pets</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink tag={RRNavLink} to='/editMed/2'  onClick={this.toggle}>Test</NavLink>
-                            </NavItem>
+                            {/* <NavItem>
+                                <NavLink tag={RRNavLink} to='/history/4'  onClick={this.toggle}>Test</NavLink>
+                            </NavItem> */}
                             {showLogout()}
                         </Nav>
 
